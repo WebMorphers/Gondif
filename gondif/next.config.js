@@ -2,6 +2,7 @@
 const withPWA = require('next-pwa') ;
 
 const nextConfig  = {
+    output: 'export',
     ...withPWA({
         dest: 'public',
         register: true,

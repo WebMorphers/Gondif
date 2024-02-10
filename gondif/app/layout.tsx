@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Urbanist } from "next/font/google";
 import "./globals.css";
 import type { Viewport } from 'next'
+import { Container } from "postcss";
  
 export const viewport: Viewport = {
-  themeColor: 'black',
+  themeColor: 'media: "(prefers-color-scheme: dark)", color: "#fff"',
   minimumScale: 1,
   initialScale: 1,
   width: 'device-width',
@@ -12,6 +14,7 @@ export const viewport: Viewport = {
 }
 
 const inter = Inter({ subsets: ["latin"] });
+const urbanist = Urbanist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +22,6 @@ export const metadata: Metadata = {
   generator: "Next.js",
   manifest: "/manifest.json",
   keywords: ["nextjs", "nextjs13", "next13", "pwa", "next-pwa"],
-  themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#fff" }],
   
   icons: [
     { rel: "apple-touch-icon", url: "icons/icon-128x128.png" },
@@ -35,7 +37,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="manifest" href="/manifest.json" />
-      <body className={inter.className}>{children}</body>
+      <body className={urbanist.className}>
+        <div className="container m-auto ">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
