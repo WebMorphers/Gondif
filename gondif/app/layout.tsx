@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { Urbanist } from "next/font/google";
 import "./globals.css";
 import type { Viewport } from 'next'
-import { Container } from "postcss";
+import { ClerkProvider } from '@clerk/nextjs'
  
 export const viewport: Viewport = {
   themeColor: 'media: "(prefers-color-scheme: dark)", color: "#fff"',
@@ -35,13 +35,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <link rel="manifest" href="/manifest.json" />
-      <body className={urbanist.className}>
-        <div className="container m-auto ">
-          {children}
-        </div>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <link rel="manifest" href="/manifest.json" />
+        <body className={urbanist.className}>
+            {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

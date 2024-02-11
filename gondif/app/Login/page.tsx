@@ -2,7 +2,32 @@ import React from 'react'
 
 function Login() {
   return (
-    <div className='font-normal text-lg'>Enter your mobile number</div>
+    <div className='container'>
+      <div>
+        {/* Mobile */}
+        <div>
+          <div>
+            <h4>Enter your mobile number</h4>
+          </div>
+          <div>
+          </div>
+          <div>
+
+          </div>
+        </div>
+        {/* seperator */}
+        <div>
+
+        </div>
+        {/* Login options */}
+        <div>
+          <div>
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
   )
 }
 
