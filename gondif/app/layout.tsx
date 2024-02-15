@@ -35,7 +35,6 @@ export default function RootLayout({
       <html lang="en">
         <link rel="manifest" href="/manifest.json" />
         <body className={urbanist.className}>
-          
             {children}
         </body>
       </html>

@@ -18,12 +18,12 @@ const Page = () => {
           onChange={(newValue: string | undefined) => setValue(newValue)}  
         />
         <div><button
-  className="relative cursor-pointer opacity-90 hover:opacity-100 transition-opacity p-[2px] bg-black rounded-[16px] bg-gradient-to-t from-[#8122b0] to-[#dc98fd] active:scale-95"
+  className="relative cursor-pointer opacity-90 hover:opacity-100 transition-opacity p-[2px] bg-black rounded-[16px] bg-gradient-to-t from-[#9FE870] to-[#9FE870] active:scale-95"
 >
   <span
-    className="w-full h-full flex items-center gap-2 px-8 py-3 bg-[#B931FC] text-[#f1d5fe] rounded-[14px] bg-gradient-to-t from-[#a62ce2] to-[#c045fc]"
+    className="w-full h-full flex items-center gap-2 px-8 py-3 bg-[#9FE870] text-[#f1d5fe] rounded-[14px] bg-gradient-to-t from-[#9FE870] to-[#9FE870]"
   >
-    Play Game</span>
+    Next</span>
 </button>
 </div>
       </div>
