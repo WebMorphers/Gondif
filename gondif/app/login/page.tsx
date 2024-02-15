@@ -1,9 +1,34 @@
-import React from 'react'
+'use client'
 
-const page = () => {
+import React, { useState } from 'react';
+import 'react-phone-number-input/style.css';
+import dynamic from 'next/dynamic';
+const PhoneInput = dynamic(() => import('react-phone-number-input'), { ssr: false });
+
+const Page = () => {
+  const [value, setValue] = useState<string | undefined>(undefined); 
+
   return (
-    <div>page</div>
-  )
-}
+    <div className='flex flex-col p-9'>
+      <h1 className='' >Enter your mobile number</h1>
+      <div className='flex flex-col'> 
+        <PhoneInput 
+          defaultCountry="MA"
+          value={value}
+          onChange={(newValue: string | undefined) => setValue(newValue)}  
+        />
+        <div><button
+  className="relative cursor-pointer opacity-90 hover:opacity-100 transition-opacity p-[2px] bg-black rounded-[16px] bg-gradient-to-t from-[#8122b0] to-[#dc98fd] active:scale-95"
+>
+  <span
+    className="w-full h-full flex items-center gap-2 px-8 py-3 bg-[#B931FC] text-[#f1d5fe] rounded-[14px] bg-gradient-to-t from-[#a62ce2] to-[#c045fc]"
+  >
+    Play Game</span>
+</button>
+</div>
+      </div>
+    </div>
+  );
+};
 
-export default page
+export default Page;
