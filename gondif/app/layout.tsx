@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Urbanist } from "next/font/google";
 import "./globals.css";
 import type { Viewport } from 'next'
-import { ClerkProvider } from '@clerk/nextjs'
  
 export const viewport: Viewport = {
   themeColor: 'media: "(prefers-color-scheme: dark)", color: "#fff"',
@@ -13,7 +11,6 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 }
 
-const inter = Inter({ subsets: ["latin"] });
 const urbanist = Urbanist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -35,13 +32,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
       <html lang="en">
         <link rel="manifest" href="/manifest.json" />
         <body className={urbanist.className}>
             {children}
         </body>
       </html>
-    </ClerkProvider>
   );
 }
