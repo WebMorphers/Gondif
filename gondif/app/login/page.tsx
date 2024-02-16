@@ -90,6 +90,9 @@ Continue with Google</span>
 Continue with Apple</span>
 </button>
 </div>
+<p className='text-xs text-[#757575]'> By proceeding, you consent to get calls,
+   WhatsApp or SMS messages, including by automated means,
+   from Gondif and its affiliates to the number provideds</p>
 
       </div>
     </div>
