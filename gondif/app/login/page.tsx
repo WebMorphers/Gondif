@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import 'react-phone-number-input/style.css';
 import dynamic from 'next/dynamic';
+import { signIn } from 'next-auth/react';
+
 const PhoneInput = dynamic(() => import('react-phone-number-input'), { ssr: false });
 
 const Page = () => {
@@ -48,6 +50,7 @@ const Page = () => {
  Continue with Facebook</span>
 </button>
 </div>
+<a onClick={() => signIn('google')}>
 <div><button
   className="max-sm:w-full relative cursor-pointer opacity-90 hover:opacity-100 transition-opacity p-[2px] bg-black rounded-[16px] bg-gradient-to-t from-[#163300] to-[#163300] active:scale-95"
 >
@@ -70,6 +73,8 @@ const Page = () => {
 Continue with Google</span>
 </button>
 </div>
+</a>
+
 <div><button
   className="max-sm:w-full relative cursor-pointer opacity-90 hover:opacity-100 transition-opacity p-[2px] bg-black rounded-[16px] bg-gradient-to-t from-[#163300] to-[#163300] active:scale-95"
 >
@@ -90,6 +95,8 @@ Continue with Google</span>
 Continue with Apple</span>
 </button>
 </div>
+ 
+
 <p className='text-xs text-[#757575]'> By proceeding, you consent to get calls,
    WhatsApp or SMS messages, including by automated means,
    from Gondif and its affiliates to the number provideds</p>

@@ -2,7 +2,14 @@ import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import "./globals.css";
 import type { Viewport } from 'next'
- 
+import Login from './login/page'
+import Home from './page';
+import { getServerSession } from 'next-auth' 
+import SessionProvider from './SessionProvider/page';
+import { authOptions } from '../pages/api/auth/[...nextauth]';
+
+
+  
 export const viewport: Viewport = {
   themeColor: 'media: "(prefers-color-scheme: dark)", color: "#fff"',
   minimumScale: 1,
@@ -26,17 +33,24 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession(authOptions);
   return (
       <html lang="en">
         <link rel="manifest" href="/manifest.json" />
         <body className={urbanist.className}>
-            {children}
-        </body>
+        <SessionProvider session={session}>
+        {!session ? (
+          <Login/>
+        ): (
+          <Home/>
+        )}
+      </SessionProvider>
+         </body>
       </html>
   );
 }
