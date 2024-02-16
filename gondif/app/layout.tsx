@@ -40,17 +40,14 @@ export default async function RootLayout({
 }>) {
   const session = await getServerSession(authOptions);
   return (
-      <html lang="en">
-        <link rel="manifest" href="/manifest.json" />
-        <body className={urbanist.className}>
-        <SessionProvider session={session}>
-        {!session ? (
-          <Login/>
-        ): (
-          <Home/>
-        )}
+    <html lang="en">
+    <link rel="manifest" href="/manifest.json" />
+    <body className={urbanist.className}>
+      <SessionProvider session={session}>
+        {!session ? <Login /> : <Home />}
+        {children}
       </SessionProvider>
-         </body>
-      </html>
+    </body>
+  </html>
   );
 }

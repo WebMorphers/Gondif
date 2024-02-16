@@ -9,8 +9,8 @@ type Props = {
 
 export default function page({children, session}: Props) {
   return (
-    <Provider>
-      {children}
-    </Provider>
+    <Provider session={session}>
+    {children}
+  </Provider>
   )
 }
