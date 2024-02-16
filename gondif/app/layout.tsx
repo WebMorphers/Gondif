@@ -45,8 +45,7 @@ export default async function RootLayout({
     <body className={urbanist.className}>
       <SessionProvider session={session}>
         {!session ? <Login /> : <Home />}
-        {children}
-      </SessionProvider>
+       </SessionProvider>
     </body>
   </html>
   );
