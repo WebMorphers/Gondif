@@ -1,11 +1,10 @@
 import React from 'react'
 import './dropdownMenu.css'
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 
 function dropdownMenu() {
 
-    const session = useSession();
-
+    const session  = useSession()
 
   return (
     <div  className="absolute z-50 top-5 right-5">
@@ -19,8 +18,8 @@ function dropdownMenu() {
     <nav className="popup-window z-50">
       <legend>Actions</legend>
       <ul>
-        <li>
-          <button>
+        {session ?         <li>
+          <a>
             <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
               <circle r="4" cy="7" cx="9"></circle>
@@ -28,45 +27,46 @@ function dropdownMenu() {
               <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
             <span>{session?.data?.user?.name}</span>
-          </button>
-        </li>
+          </a>
+        </li> : null}
+
         <li>
-          <button>
+          <a>
             <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
               <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
             </svg>
             <span>Magic Link</span>
-          </button>
+          </a>
         </li>
         <hr />
         <li>
-          <button>
+          <a>
             <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
               <rect ry="2" rx="2" height="13" width="13" y="9" x="9"></rect>
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
             </svg>
             <span>Clone</span>
-          </button>
+          </a>
         </li>
         <li>
-          <button>
+          <a>
             <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
               <polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon>
             </svg>
             <span>Edit</span>
-          </button>
+          </a>
         </li>
-        <hr />
-            <li>
-            <button>
+        <hr />{ session ? <li>
+            <a onClick={() => signOut()}>
                 <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
                 <line y2="18" x2="6" y1="6" x1="18"></line>
                 <line y2="18" x2="18" y1="6" x1="6"></line>
                 </svg>
-                <span>Delete</span>
-            </button>
-            </li>
+                <span>Log out</span>
+            </a>
+            </li> : null}
+            
         </ul>
     </nav>
   </label>

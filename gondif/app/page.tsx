@@ -32,7 +32,7 @@ export default function Home() {
         <div className='absolute '>
           <a href="/login">login</a>
           <div >{session?.data?.user?.name } </div>
-          <button onClick={() => signOut()}>Logout</button>
+          <button >Logout</button>
         </div>
         <DropdownMenu />
       <MapboxMap />

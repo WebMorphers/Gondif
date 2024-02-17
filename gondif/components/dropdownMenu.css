@@ -134,7 +134,7 @@
   list-style-type: none;
 }
 
-.popup-window ul button {
+.popup-window ul a {
   outline: none;
   width: 100%;
   border: none;
@@ -172,10 +172,10 @@
 
 /* actions */
 
-.popup-window ul button:hover,
-.popup-window ul button:focus-visible,
-.popup-window ul button:hover svg,
-.popup-window ul button:focus-visible svg {
+.popup-window ul a:hover,
+.popup-window ul a:focus-visible,
+.popup-window ul a:hover svg,
+.popup-window ul a:focus-visible svg {
   color: var(--nav-button-hover-text-color);
   background: var(--nav-button-hover-bg);
 }
