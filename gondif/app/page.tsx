@@ -27,15 +27,22 @@ export default function Home() {
 
 
   return (
-    <div className="h-screen">
+    <div className="h-screen relative w-full z-40">
       <UserLocationContext.Provider value={{UserLocation,setUserLocation}}>
-        <div className='absolute '>
-          <a href="/login">login</a>
-          <div >{session?.data?.user?.name } </div>
-          <button >Logout</button>
-        </div>
+
         <DropdownMenu />
       <MapboxMap />
+      { UserLocation ? <div className='absolute z-50 h-[25%] w-full bg-white bottom-0 rounded-t-2xl flex justify-center'>
+        <div className='mt-1 bg-[#C1C4C2] h-1 rounded-full w-[10%] text-center'></div>
+
+        
+        <div>
+
+        </div>
+
+      </div>
+
+        : null}
       </UserLocationContext.Provider>
     </div>
   );
