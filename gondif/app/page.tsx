@@ -8,6 +8,7 @@ export default function Home() {
 
   return (
     <div className="h-screen">
+      <a href="/login">login</a>
       <div >{session?.data?.user?.name }</div>
       <button onClick={() => signOut()}>Logout</button>
       <MapboxMap />
