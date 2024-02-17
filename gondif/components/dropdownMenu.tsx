@@ -59,11 +59,7 @@ function dropdownMenu() {
         </li>
         <hr />{ session ? <li>
             <a onClick={() => signOut()}>
-                <svg stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
-                <line y2="18" x2="6" y1="6" x1="18"></line>
-                <line y2="18" x2="18" y1="6" x1="6"></line>
-                </svg>
-                <span>Log out</span>
+            <svg fill="#ff0000" viewBox="-5 -3 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" className="jam jam-log-out" height="14" width="14" stroke="#ff0000" stroke-width="0.00024000000000000003"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3.414 7.828h5.642a1 1 0 1 1 0 2H3.414l1.122 1.122a1 1 0 1 1-1.415 1.414L.293 9.536a.997.997 0 0 1 0-1.415L3.12 5.293a1 1 0 0 1 1.415 1.414L3.414 7.828zM13 0a1 1 0 0 1 1 1v16a1 1 0 0 1-2 0V1a1 1 0 0 1 1-1z"></path></g></svg>                <span>Log out</span>
             </a>
             </li> : null}
             
