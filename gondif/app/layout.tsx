@@ -6,8 +6,8 @@ import Login from './login/page'
 import Home from './page';
 import { getServerSession } from 'next-auth' 
 import SessionProvider from './components/provider';
-import  handler from '@/app/api/auth/[...nextauth]/route';
- 
+import { GET } from '@/app/api/auth/[...nextauth]/route';
+  
 
   
 export const viewport: Viewport = {
@@ -38,7 +38,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(handler);
+  const session = await getServerSession(GET);
   return (
     <html lang="en">
     <link rel="manifest" href="/manifest.json" />
