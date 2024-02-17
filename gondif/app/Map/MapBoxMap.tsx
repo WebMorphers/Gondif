@@ -1,6 +1,6 @@
 import { UserLocationContext } from '@/context/UserLocationContext'
 import { Content } from 'next/font/google'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Map, Marker } from 'react-map-gl'
 import markerIcon from '@/public/marker-icon.png'
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -12,6 +12,7 @@ import LocalisationIcon from '@/public/location-icon.png'
 export default function MapBoxMap() {
 
     const { UserLocation } = useContext(UserLocationContext)
+    
 
 return (
     <div className='h-screen w-screen flex justify-center items-center'> 
