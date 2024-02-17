@@ -4,6 +4,8 @@ import React, { useContext } from 'react'
 import { Map, Marker } from 'react-map-gl'
 import markerIcon from '@/public/marker-icon.png'
 import 'mapbox-gl/dist/mapbox-gl.css';
+import Image from 'next/image'
+import LocalisationIcon from '@/public/location-icon.png'
 
 
 
@@ -12,7 +14,7 @@ export default function MapBoxMap() {
     const { UserLocation } = useContext(UserLocationContext)
 
 return (
-    <div className='h-screen w-screen'> 
+    <div className='h-screen w-screen flex justify-center items-center'> 
         {UserLocation?<Map
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOCKEN}
         initialViewState={{
@@ -29,7 +31,15 @@ return (
             anchor="bottom" >
                 <img src="marker-icon.png" width={30}  />
             </Marker>
-        </Map>:null}
+        </Map>
+        : 
+        <div className='py-12 flex justify-center items-center flex-col gap-3'>
+            <h1 className='text-center text-2xl font-semibold '>
+                Allow Position access
+            </h1>
+            <span className='font-extralight text-sm text-center'>You must allow access to continue.</span>
+            <Image src={LocalisationIcon} width={100} alt='position'/>
+        </div>}
         
     </div>
 )

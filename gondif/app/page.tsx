@@ -4,6 +4,7 @@ import { signOut, useSession } from 'next-auth/react';
 import MapboxMap from '@/app/Map/MapBoxMap';
 import { useEffect, useState } from 'react';
 import { UserLocationContext } from '@/context/UserLocationContext';
+import DropdownMenu from '@/components/dropdownMenu';
 
 export default function Home() {
   const session = useSession();
@@ -28,9 +29,12 @@ export default function Home() {
   return (
     <div className="h-screen">
       <UserLocationContext.Provider value={{UserLocation,setUserLocation}}>
-      <a href="/login">login</a>
-      <div >{session?.data?.user?.name } </div>
-      <button onClick={() => signOut()}>Logout</button>
+        <div className='absolute '>
+          <a href="/login">login</a>
+          <div >{session?.data?.user?.name } </div>
+          <button onClick={() => signOut()}>Logout</button>
+        </div>
+
       <MapboxMap />
       </UserLocationContext.Provider>
     </div>
