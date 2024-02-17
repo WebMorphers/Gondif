@@ -34,7 +34,7 @@ export default function Home() {
           <div >{session?.data?.user?.name } </div>
           <button onClick={() => signOut()}>Logout</button>
         </div>
-
+        <DropdownMenu />
       <MapboxMap />
       </UserLocationContext.Provider>
     </div>

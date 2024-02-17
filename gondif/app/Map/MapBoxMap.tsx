@@ -15,14 +15,16 @@ export default function MapBoxMap() {
 
 return (
     <div className='h-screen w-screen flex justify-center items-center'> 
-        {UserLocation?<Map
+        {UserLocation?
+            
+            <Map 
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOCKEN}
         initialViewState={{
                 longitude: UserLocation?.lng, 
                 latitude: UserLocation?.lat,
                 zoom: 14
         }}
-        style={{width: '100%', height: '100%'}}
+        style={{width: '100%', height: '100%', background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0))'}}
         mapStyle="mapbox://styles/mapbox/streets-v9"
         >
             <Marker 

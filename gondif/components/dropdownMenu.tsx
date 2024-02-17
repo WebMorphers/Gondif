@@ -1,8 +1,14 @@
 import React from 'react'
+import './dropdownMenu.css'
+import { useSession } from 'next-auth/react';
 
 function dropdownMenu() {
+
+    const session = useSession();
+
+
   return (
-    <div>
+    <div  className="absolute z-50 top-5 right-5">
         <label className="popup">
     <input type="checkbox" />
     <div className="burger" tabIndex={0}>
@@ -10,7 +16,7 @@ function dropdownMenu() {
         <span></span>
         <span></span>
     </div>
-    <nav className="popup-window">
+    <nav className="popup-window z-50">
       <legend>Actions</legend>
       <ul>
         <li>
@@ -21,7 +27,7 @@ function dropdownMenu() {
               <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
               <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
-            <span>Colloborators</span>
+            <span>{session?.data?.user?.name}</span>
           </button>
         </li>
         <li>

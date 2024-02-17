@@ -6,8 +6,8 @@ import Home from './page';
 import { getServerSession } from 'next-auth' 
 import SessionProvider from './SessionProvider/page';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
- 
-
+ import DropdownMenu from "@/components/dropdownMenu";
+import Login from "./login/page";
 
   
 export const viewport: Viewport = {
@@ -46,7 +46,9 @@ export default async function RootLayout({
     <link rel="manifest" href="/manifest.json" />
     <body className={urbanist.className}>
       <SessionProvider session={session}>
-        {!session ? children : <Home />}
+        {!session ? <Login /> :
+         children
+         }
         
       </SessionProvider>
     </body>
