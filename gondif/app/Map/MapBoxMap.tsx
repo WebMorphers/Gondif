@@ -17,9 +17,7 @@ return (
         style={{width: 400, height: '100%'}}
         mapStyle="mapbox://styles/mapbox/streets-v9"
         />
-        <Marker longitude={-100} latitude={40} anchor="bottom" >
-        <img src="./pin.png" />
-        </Marker>
+
     </div>
 )
 }
