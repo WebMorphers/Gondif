@@ -8,7 +8,7 @@ export default function Home() {
   const session = useSession();
 
   
-  const [UserLocation,setUserLocation] = useState<GeolocationPosition | null>(null);
+  const [UserLocation,setUserLocation] = useState<any>();
 
   useEffect(()=> {
     getUserLocation()
@@ -17,6 +17,10 @@ export default function Home() {
 
   const getUserLocation=()=> { navigator.geolocation.getCurrentPosition(function(props){
     console.log(props);
+    setUserLocation({
+      lat:props.coords.latitude,
+      lng:props.coords.longitude
+    })
   })}
 
 
