@@ -5,9 +5,9 @@ import type { Viewport } from 'next'
 import Login from './login/page'
 import Home from './page';
 import { getServerSession } from 'next-auth' 
-import SessionProvider from './SessionProvider/page';
-import { authOptions } from '@/app/api/auth/[...nextauth]';
-
+import SessionProvider from './components/provider';
+import  handler from '@/app/api/auth/[...nextauth]/route';
+ 
 
   
 export const viewport: Viewport = {
@@ -38,7 +38,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(handler);
   return (
     <html lang="en">
     <link rel="manifest" href="/manifest.json" />
