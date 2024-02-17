@@ -30,6 +30,8 @@ const Page = () => {
     Next</span>
 </button>
 </div>
+<a onClick={() => signIn('google')}>
+
 <div><button
   className="max-sm:w-full relative cursor-pointer opacity-90 hover:opacity-100 transition-opacity p-[2px] bg-black rounded-[16px] bg-gradient-to-t from-[#163300] to-[#163300] active:scale-95"
 >
@@ -50,6 +52,7 @@ const Page = () => {
  Continue with Facebook</span>
 </button>
 </div>
+</a>
 <a onClick={() => signIn('google')}>
 <div><button
   className="max-sm:w-full relative cursor-pointer opacity-90 hover:opacity-100 transition-opacity p-[2px] bg-black rounded-[16px] bg-gradient-to-t from-[#163300] to-[#163300] active:scale-95"
