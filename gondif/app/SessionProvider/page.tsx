@@ -7,10 +7,10 @@ type Props = {
   session: Session | null;
 }
 
-export default function provider({children, session}: Props) {
+export default function page({children, session}: Props) {
   return (
-    <Provider session={session}>
-    {children}
-  </Provider>
+    <Provider>
+      {children}
+    </Provider>
   )
 }

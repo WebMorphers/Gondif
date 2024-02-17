@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import "./globals.css";
 import type { Viewport } from 'next'
-import Login from './login/page'
 import Home from './page';
 import { getServerSession } from 'next-auth' 
-import SessionProvider from './components/provider';
-import { GET } from '@/app/api/auth/[...nextauth]/route';
-  
+import SessionProvider from './SessionProvider/page';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
+
 
   
 export const viewport: Viewport = {
@@ -38,7 +37,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(GET);
+  const session = await getServerSession(authOptions);
   return (
     <html lang="en">
     <link rel="manifest" href="/manifest.json" />
