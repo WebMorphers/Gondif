@@ -6,6 +6,7 @@ import Home from './page';
 import { getServerSession } from 'next-auth' 
 import SessionProvider from './SessionProvider/page';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
+ 
 
 
   
@@ -38,7 +39,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  
+   
   const session = await getServerSession(authOptions);
   return (
     <html lang="en">
