@@ -28,13 +28,23 @@ function AutoCompleteAdress() {
   }
 
   return (
-    <div >
+    <div className='relative'>
         <label>Your Adress</label>
-        <input type="text" className='bg-white p-1 border w-full rounded-md outline-none ' value={source} onChange={(e)=>{setSource(e.target.value); console.log("targeted")}}></input>
-        {AdressList?.data?.suggestions ? 
-        <div className='bg-gray-400  h-full text-white z-10 '>
+        <input type="text"
+         className='bg-white p-1 border w-full rounded-md outline-none '
+         value={source}
+         onChange={(e)=>setSource(e.target.value)}></input>
+
+        {AdressList?.data?.suggestions? 
+        <div className=' h-full text-black z-10 shadow-lg absolute w-full'>
         {AdressList?.data?.suggestions.map((item:any,index:number)=>(
-          <h2>{item.name}</h2>
+          <h2 
+          className='bg-gray-100 hover:bg-gray-200 p-2 cursor-pointer'
+          onClick={()=>{
+            setSource(item.name);
+            setAdressList([]);
+          }}
+          >{item.name}</h2>
         
           ))}
         </div>:null}

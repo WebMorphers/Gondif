@@ -33,7 +33,7 @@ export default function Home() {
       <MapboxMap />
       { UserLocation  ?
        <div className='absolute z-50 h-[25%] w-full bg-white bottom-0 rounded-t-2xl flex flex-col items-center justify-center'>
-        <div className='mt-1 bg-[#C1C4C2] z-50 h-1 rounded-full w-[10%] text-center'></div>
+        <div className='mt-1 bg-[#C1C4C2] z-50 h-1 rounded-full w-[10%] text-center fix'></div>
 
         
         <div className='flex flex-col px-5 my-3 h-full w-full justify-between'>

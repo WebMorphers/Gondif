@@ -37,7 +37,7 @@ return (
                 zoom: 14
         }}
         style={{width: '100%', height: '100%', background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0))'}}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
+        mapStyle="mapbox://styles/mapbox/navigation-night-v1"
         >
             <Marker 
             longitude={UserLocation?.lng}
