@@ -1,47 +1,108 @@
 "use client"
-import { Drawer } from 'vaul';
-import { useState } from 'react';
 
-export default function Home() {
- 
+import * as React from 'react';
+import { Global } from '@emotion/react';
+import { styled } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { grey } from '@mui/material/colors';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
+import Typography from '@mui/material/Typography';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+
+const drawerBleeding = 56;
+
+interface Props {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window?: () => Window;
+}
+
+const Root = styled('div')(({ theme }) => ({
+  height: '100%',
+  backgroundColor:
+    theme.palette.mode === 'light' ? grey[100] : theme.palette.background.default,
+}));
+
+const StyledBox = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
+}));
+
+const Puller = styled('div')(({ theme }) => ({
+  width: 30,
+  height: 6,
+  backgroundColor: theme.palette.mode === 'light' ? grey[300] : grey[900],
+  borderRadius: 3,
+  position: 'absolute',
+  top: 8,
+  left: 'calc(50% - 15px)',
+}));
+
+export default function SwipeableEdgeDrawer(props: Props) {
+  const { window } = props;
+  const [open, setOpen] = React.useState(false);
+
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen);
+  };
+
+  // This is used only for the example
+  const container = window !== undefined ? () => window().document.body : undefined;
+
   return (
-    <Drawer.Root open={true}>  
-      <Drawer.Portal>
-        <Drawer.Overlay className="fixed inset-0 bg-black/40" />
-          <Drawer.Content className="bg-zinc-100 flex flex-col rounded-t-[10px] h-[30%] mt-24 fixed bottom-0 left-0 right-0">
-            <div className="p-4 bg-white rounded-t-[10px] flex-1">
-              <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-zinc-300 mb-8" />
-              <div className="max-w-md mx-auto">
-                <Drawer.Title className="font-medium mb-4">
-                  Unstyled drawer for React.
-                </Drawer.Title>
-                <p className="text-zinc-600 mb-2">
-                  This component can be used as a replacement for a Dialog on
-                  mobile and tablet devices.
-                </p>
-                <p className="text-zinc-600 mb-8">
-                  It uses{" "}
-                  <a
-                    href="https://www.radix-ui.com/docs/primitives/components/dialog"
-                    className="underline"
-                    target="_blank"
-                  >
-                    Radix&apos;s Dialog primitive
-                  </a>{" "}
-                  under the hood and is inspired by{" "}
-                  <a
-                    href="https://twitter.com/devongovett/status/1674470185783402496"
-                    className="underline"
-                    target="_blank"
-                  >
-                    this tweet.
-                  </a>
-                </p>
-              </div>
-            </div>
-             
-          </Drawer.Content>
-      </Drawer.Portal>
-    </Drawer.Root>
+    <Root>
+      <CssBaseline />
+      <Global
+        styles={{
+          '.MuiDrawer-root > .MuiPaper-root': {
+            height: `calc(50% - ${drawerBleeding}px)`,
+            overflow: 'visible',
+          },
+        }}
+      />
+      <Box sx={{ textAlign: 'center', pt: 1 }}>
+        <Button onClick={toggleDrawer(true)}>Open</Button>
+      </Box>
+      <SwipeableDrawer
+        container={container}
+        anchor="bottom"
+        open={open}
+        onClose={toggleDrawer(false)}
+        onOpen={toggleDrawer(true)}
+        swipeAreaWidth={drawerBleeding}
+        disableSwipeToOpen={false}
+        ModalProps={{
+          keepMounted: true,
+        }}
+      >
+        <StyledBox
+          sx={{
+            position: 'absolute',
+            top: -drawerBleeding,
+            borderTopLeftRadius: 8,
+            borderTopRightRadius: 8,
+            visibility: 'visible',
+            right: 0,
+            left: 0,
+          }}
+        >
+          <Puller />
+          <Typography sx={{ p: 2, color: 'text.secondary' }}>Your location</Typography>
+        </StyledBox>
+        <StyledBox
+          sx={{
+            px: 2,
+            pb: 2,
+            height: '100%',
+            overflow: 'auto',
+          }}
+        >
+          <Skeleton variant="rectangular" height="100%" />
+        </StyledBox>
+      </SwipeableDrawer>
+    </Root>
   );
 }
