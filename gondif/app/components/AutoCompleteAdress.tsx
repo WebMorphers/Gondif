@@ -38,13 +38,15 @@ function AutoCompleteAdress() {
         {AdressList?.data?.suggestions? 
         <div className=' h-full text-black z-10 shadow-lg absolute w-full'>
         {AdressList?.data?.suggestions.map((item:any,index:number)=>(
-          <h2 
+          <div           
           className='bg-gray-100 hover:bg-gray-200 p-2 cursor-pointer'
           onClick={()=>{
             setSource(item.name);
             setAdressList([]);
-          }}
-          >{item.name}</h2>
+          }}          >
+          <h2>{item.name}</h2>
+            <span className='font-light text-xs'>{item.full_address}</span>
+            </div>
         
           ))}
         </div>:null}
