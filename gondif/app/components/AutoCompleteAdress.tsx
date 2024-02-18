@@ -31,10 +31,10 @@ function AutoCompleteAdress() {
     <div >
         <label>Your Adress</label>
         <input type="text" className='bg-white p-1 border w-full rounded-md outline-none ' value={source} onChange={(e)=>{setSource(e.target.value); console.log("targeted")}}></input>
-        {AdressList?.suggestions ? 
-        <div className='bg-black h-full '>
-        {AdressList?.suggestions.map((item:any,index:number)=>(
-          <h2>{item.full_adress}</h2>
+        {AdressList?.data.suggestions ? 
+        <div className='bg-black h-full text-white z-10 '>
+        {AdressList?.data.suggestions.map((item:any,index:number)=>(
+          <h2>{item.full_address}</h2>
         
           ))}
         </div>:null}
