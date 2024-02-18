@@ -5,6 +5,7 @@ import MapboxMap from '@/app/Map/MapBoxMap';
 import { useEffect, useState } from 'react';
 import { UserLocationContext } from '@/context/UserLocationContext';
 import DropdownMenu from '@/app/components/dropDown/dropdownMenu';
+import AutoCompleteAdress from './components/AutoCompleteAdress';
 
 export default function Home() {
   const session = useSession();
@@ -36,7 +37,7 @@ export default function Home() {
           <div className='mx-1 '>
             <div className='flex justify-between pr-1'>
 
-
+            <AutoCompleteAdress />
 
             </div>
             <div className='mx-1'>

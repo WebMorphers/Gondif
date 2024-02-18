@@ -9,8 +9,12 @@ function AutoCompleteAdress() {
   const [AdressList,setAdressList] = useState<any>([]);
 
   useEffect(()=> {
-    getAdressList()
-  },[])
+    
+      getAdressList()
+      console.log(AdressList);
+    
+
+  },[source])
 
   const getAdressList = async () => {
     const res = await fetch(`/api/search-adress?q=`+source,{
@@ -23,8 +27,17 @@ function AutoCompleteAdress() {
 
   return (
     <div>
-        <label>Adress</label>
-        <input type="text" className='bg-white p-1 border w-full rounded-md outline' onChange={(e)=>{e.target}}></input>
+              
+        <div className='bg-black'>
+        {AdressList?.suggestions?.map((adress:any,index:number)=>(
+          <h2>{adress.suggestions.name}</h2>
+        ))
+      }
+        </div>
+              
+
+        <label>Your Adress</label>
+        <input type="text" className='bg-white p-1 border w-full rounded-md outline-none ' value={source? source : null} onChange={(e)=>{setSource(e.target.value); console.log("targeted")}}></input>
     </div>
   )
 }
