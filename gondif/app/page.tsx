@@ -10,6 +10,9 @@ import AutoCompleteAdress from './components/AutoCompleteAdress';
 export default function Home() {
   const session = useSession();
 
+  useEffect(() => {
+    getUserLocation()
+  },[])
   
   const [UserLocation,setUserLocation] = useState<any>();
 
@@ -28,12 +31,13 @@ export default function Home() {
 
         <DropdownMenu />
       <MapboxMap />
-      { UserLocation  ? <div className='absolute z-50 h-[25%] w-full bg-white bottom-0 rounded-t-2xl flex flex-col items-center justify-center'>
+      { UserLocation  ?
+       <div className='absolute z-50 h-[25%] w-full bg-white bottom-0 rounded-t-2xl flex flex-col items-center justify-center'>
         <div className='mt-1 bg-[#C1C4C2] z-50 h-1 rounded-full w-[10%] text-center'></div>
 
         
         <div className='flex flex-col px-5 my-3 h-full w-full justify-between'>
-          <h1 className='font-bold text-[##163300] text-xl'>Your Position</h1>
+          <h1 className='font-bold text-[#163300] text-xl'>Your Position</h1>
           <div className='mx-1 '>
             <div className='flex justify-between pr-1'>
             
