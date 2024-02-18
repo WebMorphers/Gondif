@@ -7,7 +7,7 @@ function AutoCompleteAdress() {
 
   const [source,setSource] = useState<any>();
 
-  const [AdressList,setAdressList] = useState<any>([]);
+  const [AdressList,setAdressList] = useState<any>(null);
 
   useEffect(()=> {
       const DelayedRequest = setTimeout(()=>{
@@ -31,10 +31,10 @@ function AutoCompleteAdress() {
     <div >
         <label>Your Adress</label>
         <input type="text" className='bg-white p-1 border w-full rounded-md outline-none ' value={source} onChange={(e)=>{setSource(e.target.value); console.log("targeted")}}></input>
-        {AdressList?.data.suggestions ? 
-        <div className='bg-black h-full text-white z-10 '>
-        {AdressList?.data.suggestions.map((item:any,index:number)=>(
-          <h2>{item.full_address}</h2>
+        {AdressList?.data?.suggestions ? 
+        <div className='bg-gray-400  h-full text-white z-10 '>
+        {AdressList?.data?.suggestions.map((item:any,index:number)=>(
+          <h2>{item.name}</h2>
         
           ))}
         </div>:null}
