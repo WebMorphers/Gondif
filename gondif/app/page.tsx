@@ -27,6 +27,8 @@ export default function Home() {
 
 const session = useSession();
 
+  const [openDrawer,setopenDrawer] = useState(true);
+
   useEffect(() => {
     getUserLocation()
   },[])
@@ -47,7 +49,10 @@ const session = useSession();
             <DropdownMenu />
       <MapBoxMap />
       { UserLocation ?
-    <Drawer open= {true} modal={false}>
+    <Drawer open= {openDrawer} modal={false}>
+      <DrawerTrigger asChild>
+        <button className="w-full h-full opacity-0"></button>
+      </DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
@@ -62,7 +67,7 @@ const session = useSession();
           </div>
           <DrawerFooter>
             <Button>Submit</Button>
-            <DrawerClose asChild>
+            <DrawerClose asChild >
               <Button variant="outline">Cancel</Button>
             </DrawerClose>
           </DrawerFooter>
