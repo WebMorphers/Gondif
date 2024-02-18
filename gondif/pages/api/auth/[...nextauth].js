@@ -28,21 +28,27 @@ export const authOptions = {
         clientSecret: process.env.FACEBOOK_CLIENT_SECRET
       }),
     ],
-  callbacks: {
-    async signIn(user, account, profile) {
-      console.log("Signing in user:", user + db);
-      try {
-        await setDoc(doc(db, "users", user.id), {
-          name: user.name,
-          email: user.email,
-         });
-        console.log("User data saved successfully ");
-      } catch (error) {
-        console.error("Error saving user data:", error);
+    callbacks: {
+        async signIn(user, account, profile) {
+            try { 
+                    const docRef = doc(db, "users", user.user.id);
+                    const userData = {
+                        id: user.user.id,
+                        email: user.profile.email,
+                        provider: user.account.provider
+                    };
+                  
+              
+                    await setDoc(docRef, userData);
+                    console.log("User data saved successfully ");
+               
+            } catch (error) {
+                console.error("Error saving user data:", error);
+            }
+            return true;  
+        }
+        
       }
-      return true;  
-    }
-  }
 }
 
 export default NextAuth(authOptions)
