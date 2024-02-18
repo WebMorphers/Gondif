@@ -24,7 +24,7 @@ import DropdownMenu from "@/components/dropDown/dropdownMenu"
 
 
 export default function Home() {
-
+  const [isOpen, setIsOpen] = useState(true);  
 const session = useSession();
 
   const [openDrawer,setopenDrawer] = useState(true);
@@ -45,14 +45,15 @@ const session = useSession();
   
   return (
     <div>
+      
     <UserLocationContext.Provider value={{UserLocation,setUserLocation}}>
             <DropdownMenu />
       <MapBoxMap />
       { UserLocation ?
-    <Drawer open= {openDrawer} modal={false}>
-      <DrawerTrigger asChild>
-        <button className="w-full h-full opacity-0"></button>
-      </DrawerTrigger>
+
+    <Drawer open={isOpen} modal={false} onClose={() => setIsOpen(false)}>
+            {!isOpen && <DrawerTrigger onClick={() => setIsOpen(true)}>Open</DrawerTrigger>}  
+
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
