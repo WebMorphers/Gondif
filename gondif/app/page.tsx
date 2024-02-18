@@ -24,7 +24,6 @@ import DropdownMenu from "@/components/dropDown/dropdownMenu"
 
 
 export default function Home() {
-  const [goal, setGoal] = useState(350)
 
 const session = useSession();
 
