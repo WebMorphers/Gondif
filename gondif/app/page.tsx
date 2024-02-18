@@ -4,7 +4,7 @@ import { signOut, useSession } from 'next-auth/react';
 import MapboxMap from '@/app/Map/MapBoxMap';
 import { useEffect, useState } from 'react';
 import { UserLocationContext } from '@/context/UserLocationContext';
-import DropdownMenu from '@/components/dropDown/dropdownMenu';
+import DropdownMenu from '@/app/components/dropDown/dropdownMenu';
 import AutoCompleteAdress from './components/AutoCompleteAdress';
 
 export default function Home() {
@@ -36,8 +36,9 @@ export default function Home() {
           <h1 className='font-bold text-[##163300] text-xl'>Your Position</h1>
           <div className='mx-1 '>
             <div className='flex justify-between pr-1'>
-
+            
             <AutoCompleteAdress />
+
 
             </div>
             <div className='mx-1'>

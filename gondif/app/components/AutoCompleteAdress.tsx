@@ -34,7 +34,7 @@ function AutoCompleteAdress() {
         {AdressList?.suggestions ? 
         <div className='bg-black h-full '>
         {AdressList?.suggestions.map((item:any,index:number)=>(
-          <h2>{item[index].full_adress}</h2>
+          <h2>{item.full_adress}</h2>
         
           ))}
         </div>:null}

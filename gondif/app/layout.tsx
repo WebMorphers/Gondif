@@ -6,7 +6,7 @@ import Home from './page';
 import { getServerSession } from 'next-auth' 
 import SessionProvider from './SessionProvider/page';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
- import DropdownMenu from "@/components/dropDown/dropdownMenu";
+ import DropdownMenu from "@/app/components/dropDown/dropdownMenu";
 import Login from "./login/page";
 
   
