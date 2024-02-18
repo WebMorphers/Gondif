@@ -44,15 +44,16 @@ const session = useSession();
   })}
   
   return (
-    <div className="relative">
       
     <UserLocationContext.Provider value={{UserLocation,setUserLocation}}>
+          <div className="relative h-screen overflow-hidden ">
+
             <DropdownMenu />
       <MapBoxMap />
       { UserLocation ?
 
     <Drawer open={isOpen} modal={false} onClose={() => setIsOpen(false)}>
-            {!isOpen && <DrawerTrigger onClick={() => setIsOpen(true)}><button className="absolute h-full w-full opacity-0 top-0"></button></DrawerTrigger>}  
+            {!isOpen && <DrawerTrigger className="absolute h-screen w-screen opacity-0 top-0" onClick={() => setIsOpen(true)}></DrawerTrigger>}  
 
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
@@ -76,8 +77,9 @@ const session = useSession();
       </DrawerContent>
     </Drawer>
     : null}
+        </div>
+
         </UserLocationContext.Provider>
 
-    </div>
   )
 }
