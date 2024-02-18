@@ -1,108 +1,78 @@
 "use client"
 
-import * as React from 'react';
-import { Global } from '@emotion/react';
-import { styled } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { grey } from '@mui/material/colors';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
-import Typography from '@mui/material/Typography';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
-const drawerBleeding = 56;
+import * as React from "react"
+import { MinusIcon, PlusIcon } from "@radix-ui/react-icons"
 
-interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window?: () => Window;
-}
+import { Button } from "@/components/ui/button"
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+import { useEffect, useState } from "react"
+import MapBoxMap from "./Map/MapBoxMap"
+import { useSession } from "next-auth/react"
+import { UserLocationContext } from "@/context/UserLocationContext"
+import DropdownMenu from "@/components/dropDown/dropdownMenu"
 
-const Root = styled('div')(({ theme }) => ({
-  height: '100%',
-  backgroundColor:
-    theme.palette.mode === 'light' ? grey[100] : theme.palette.background.default,
-}));
 
-const StyledBox = styled('div')(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
-}));
 
-const Puller = styled('div')(({ theme }) => ({
-  width: 30,
-  height: 6,
-  backgroundColor: theme.palette.mode === 'light' ? grey[300] : grey[900],
-  borderRadius: 3,
-  position: 'absolute',
-  top: 8,
-  left: 'calc(50% - 15px)',
-}));
+export default function Home() {
+  const [goal, setGoal] = useState(350)
 
-export default function SwipeableEdgeDrawer(props: Props) {
-  const { window } = props;
-  const [open, setOpen] = React.useState(false);
+const session = useSession();
 
-  const toggleDrawer = (newOpen: boolean) => () => {
-    setOpen(newOpen);
-  };
+  useEffect(() => {
+    getUserLocation()
+  },[])
 
-  // This is used only for the example
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const [UserLocation,setUserLocation] = useState<any>();
 
+  const getUserLocation=()=> { navigator.geolocation.getCurrentPosition(function(props){
+    console.log(props);
+    setUserLocation({
+      lat:props.coords.latitude,
+      lng:props.coords.longitude
+    })
+  })}
+  
   return (
-    <Root>
-      <CssBaseline />
-      <Global
-        styles={{
-          '.MuiDrawer-root > .MuiPaper-root': {
-            height: `calc(50% - ${drawerBleeding}px)`,
-            overflow: 'visible',
-          },
-        }}
-      />
-      <Box sx={{ textAlign: 'center', pt: 1 }}>
-        <Button onClick={toggleDrawer(true)}>Open</Button>
-      </Box>
-      <SwipeableDrawer
-        container={container}
-        anchor="bottom"
-        open={open}
-        onClose={toggleDrawer(false)}
-        onOpen={toggleDrawer(true)}
-        swipeAreaWidth={drawerBleeding}
-        disableSwipeToOpen={false}
-        ModalProps={{
-          keepMounted: true,
-        }}
-      >
-        <StyledBox
-          sx={{
-            position: 'absolute',
-            top: -drawerBleeding,
-            borderTopLeftRadius: 8,
-            borderTopRightRadius: 8,
-            visibility: 'visible',
-            right: 0,
-            left: 0,
-          }}
-        >
-          <Puller />
-          <Typography sx={{ p: 2, color: 'text.secondary' }}>Your location</Typography>
-        </StyledBox>
-        <StyledBox
-          sx={{
-            px: 2,
-            pb: 2,
-            height: '100%',
-            overflow: 'auto',
-          }}
-        >
-          <Skeleton variant="rectangular" height="100%" />
-        </StyledBox>
-      </SwipeableDrawer>
-    </Root>
-  );
+    <div>
+    <UserLocationContext.Provider value={{UserLocation,setUserLocation}}>
+            <DropdownMenu />
+      <MapBoxMap />
+      { UserLocation ?
+    <Drawer open= {true} modal={false}>
+      <DrawerContent>
+        <div className="mx-auto w-full max-w-sm">
+          <DrawerHeader>
+            <DrawerTitle>Move Goal</DrawerTitle>
+            <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+          </DrawerHeader>
+          <div className="p-4 pb-0">
+            <div className="flex items-center justify-center space-x-2">
+            <h1>Test</h1>
+              </div>
+            
+          </div>
+          <DrawerFooter>
+            <Button>Submit</Button>
+            <DrawerClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </div>
+      </DrawerContent>
+    </Drawer>
+    : null}
+        </UserLocationContext.Provider>
+
+    </div>
+  )
 }
