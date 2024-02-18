@@ -9,10 +9,11 @@ function AutoCompleteAdress() {
   const [AdressList,setAdressList] = useState<any>([]);
 
   useEffect(()=> {
-    
+      const DelayedRequest = setTimeout(()=>{
       getAdressList()
       console.log(AdressList);
-    
+    },1000)
+    return ()=> clearTimeout(DelayedRequest)  //reset timeout
 
   },[source])
 
@@ -37,7 +38,7 @@ function AutoCompleteAdress() {
               
 
         <label>Your Adress</label>
-        <input type="text" className='bg-white p-1 border w-full rounded-md outline-none ' value={source? source : null} onChange={(e)=>{setSource(e.target.value); console.log("targeted")}}></input>
+        <input type="text" className='bg-white p-1 border w-full rounded-md outline-none ' value={source} onChange={(e)=>{setSource(e.target.value); console.log("targeted")}}></input>
     </div>
   )
 }

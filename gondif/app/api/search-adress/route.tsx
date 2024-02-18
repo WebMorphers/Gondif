@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
 
 export async function GET(request:any){
+
     const BASE_URL = "https://api.mapbox.com/search/searchbox/v1/suggest"
     const {searchParams} = new URL(request.url);
     const searchText=searchParams.get('q');
 
-    const res = await fetch(BASE_URL+'?q='+searchText+'&country=MA&language=en&limit=6&session_token=[GENERATED-UUID]&proximity=-122.3995752,37.7881856&access_token='+process.env.MAPBOX_ACCESS_TOCKEN , 
+    const res = await fetch(BASE_URL+'?q='+searchText+'&access_token=pk.eyJ1Ijoic2VhcmNoLW1hY2hpbmUtdXNlci0xIiwiYSI6ImNrNnJ6bDdzdzA5cnAza3F4aTVwcWxqdWEifQ.RFF7CVFKrUsZVrJsFzhRvQ&session_token=b6844ea0-751a-478e-ac07-b155204cb99e&language=en&types=country', 
     {
         headers: {
         "content-type": "application/json", 

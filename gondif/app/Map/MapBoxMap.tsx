@@ -43,14 +43,7 @@ return (
             longitude={UserLocation?.lng}
             latitude={UserLocation?.lat}
             anchor="bottom" 
-            draggable
-            onDragStart={()=> { navigator.geolocation.getCurrentPosition(function(props){
-                console.log(props);
-                setUserLocation({
-                  lat:props.coords.latitude,
-                  lng:props.coords.longitude
-                })
-              })}}>
+            draggable>
                 <img src="marker-icon.png" width={30}  />
             </Marker>
             

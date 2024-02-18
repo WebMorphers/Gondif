@@ -4,7 +4,7 @@ import { signOut, useSession } from 'next-auth/react';
 import MapboxMap from '@/app/Map/MapBoxMap';
 import { useEffect, useState } from 'react';
 import { UserLocationContext } from '@/context/UserLocationContext';
-import DropdownMenu from '@/app/components/dropDown/dropdownMenu';
+import DropdownMenu from '@/components/dropDown/dropdownMenu';
 import AutoCompleteAdress from './components/AutoCompleteAdress';
 
 export default function Home() {
