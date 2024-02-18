@@ -44,7 +44,7 @@ const session = useSession();
   })}
   
   return (
-    <div>
+    <div className="relative">
       
     <UserLocationContext.Provider value={{UserLocation,setUserLocation}}>
             <DropdownMenu />
@@ -52,7 +52,7 @@ const session = useSession();
       { UserLocation ?
 
     <Drawer open={isOpen} modal={false} onClose={() => setIsOpen(false)}>
-            {!isOpen && <DrawerTrigger onClick={() => setIsOpen(true)}>Open</DrawerTrigger>}  
+            {!isOpen && <DrawerTrigger onClick={() => setIsOpen(true)}><button className="absolute h-full w-full opacity-0 top-0"></button></DrawerTrigger>}  
 
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
