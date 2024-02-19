@@ -69,7 +69,7 @@ const session = useSession();
             
           </div>
           <DrawerFooter>
-            <Button>Submit</Button>
+            <Button className="bg-[#9FE870] text-[#163300] ">Confirm Position</Button>
           </DrawerFooter>
         </div>
       </DrawerContent>
