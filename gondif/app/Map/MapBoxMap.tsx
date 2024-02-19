@@ -43,7 +43,8 @@ return (
         style={{width: '100%', height: '100%', background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0))'}}
         mapStyle="mapbox://styles/mapbox/navigation-night-v1"
         >
-            {Coordinates?<Marker 
+            {Coordinates?
+            <Marker 
             longitude={Coordinates?.lng}
             latitude={Coordinates?.lat}
             anchor="bottom" 
@@ -51,7 +52,13 @@ return (
                 <img src="marker-icon.png" width={30}  />
             </Marker>
             :
-            null}   
+            <Marker 
+            longitude={UserLocation?.lng}
+            latitude={UserLocation?.lat}
+            anchor="bottom" 
+            draggable>
+                <img src="marker-icon.png" width={30}  />
+            </Marker>}   
         </Map>
         : 
         <div className='py-12 flex justify-center items-center flex-col gap-3'>
