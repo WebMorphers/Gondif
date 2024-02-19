@@ -45,12 +45,12 @@ const VehiculeType = () => {
                     <Card >
                   <div className="shadow-md rounded-md flex flex-row p-4 gap-7">
                     <img src={Small.src} className="w-20" alt="" />
-                    <div>
+                    <div className="flex flex-col flex-1 gap-1">
                       <h1 className="hover:text-[#9FE870] text-[#163300] font-bold">Small vehicle</h1>
                       <p className="text-[#8996A2] text-xs">Sudans and SUVs. <br />  vehicles regular people use.</p>
                     </div>
-                    <div>
-                      <h1 className="text-[#163300] text-[13px]">MAD 10 - 90</h1>
+                    <div className="flex flex-col justify-center items-center">
+                      <h1 className="text-[#163300] text-[13px] font-bold">MAD 10 - 90</h1>
                       <p className="text-[#8996A2] text-[11px] ">25 mins</p>
                     </div>
                    </div> 
