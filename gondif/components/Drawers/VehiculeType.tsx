@@ -30,7 +30,8 @@ const VehiculeType = () => {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleCardClick = () => {
-    setIsClicked(!isClicked); // Toggle the clicked state
+    setIsClicked(!isClicked);
+     // Toggle the clicked state
   };
 
   return (
@@ -46,7 +47,7 @@ const VehiculeType = () => {
               </DrawerHeader>
               <div className="">
                 <div className="flex items-center flex-col justify-center gap-3">
-                  <Card onClick={handleCardClick} className={isClicked ? "animate-bounce" : ""}>
+                  <Card onClick={handleCardClick} className={isClicked ? "scale-105" : ""}>
                     <div className="shadow-md rounded-md flex flex-row p-4 gap-7">
                       <img src={Small.src} className="w-20" alt="" />
                       <div className="flex flex-col flex-1 gap-1">
