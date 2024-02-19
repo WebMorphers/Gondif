@@ -3,6 +3,14 @@ import * as React from "react"
  
 import { Button } from "@/components/ui/button"
 import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
   Drawer,
   DrawerContent,
   DrawerDescription,
@@ -29,11 +37,35 @@ const ExtraDetails = () => {
                 <DrawerHeader>
                   <DrawerTitle className="text-start">Extra details</DrawerTitle>
                  </DrawerHeader>
-                <div className="p-4 pb-0">
-                  <div className="flex items-center flex-col justify-center space-x-2">
-           
-                   </div>
-                </div>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Card Title</CardTitle>
+                      <CardDescription>Card Description</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div>
+                        <div className="flex ">
+                          <div >
+                            <input
+                             type="checkbox"
+                             id="types-checkbox" />
+                            <label htmlFor="types-checkbox" className=" border-4 border-[#9FE870] w-8" />
+                          </div>
+                          <div>
+                          <CardTitle>Exterior</CardTitle>
+                          <CardDescription>Sudans and SUVs.vehicles regular people use.</CardDescription>
+                          </div>
+                        </div>
+                        <div>
+                        <CardTitle>Interior</CardTitle>
+                      <CardDescription>Sudans and SUVs.vehicles regular people use.</CardDescription>
+                        </div>
+                      </div>
+                    </CardContent>
+
+                  </Card>
+
                 <DrawerFooter>
                   <Button className="bg-[#9FE870] text-[#163300] ">Confirm Vehicle</Button>
                 </DrawerFooter>
