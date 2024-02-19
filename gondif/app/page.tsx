@@ -20,6 +20,7 @@ import MapBoxMap from "./Map/MapBoxMap"
 import { useSession } from "next-auth/react"
 import { UserLocationContext } from "@/context/UserLocationContext"
 import DropdownMenu from "@/components/dropDown/dropdownMenu"
+import AutoCompleteAdress from "@/components/AutoCompleteAdress"
 
 
 
@@ -58,20 +59,17 @@ const session = useSession();
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
-            <DrawerTitle>Move Goal</DrawerTitle>
-            <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+            <DrawerTitle>Your location </DrawerTitle>
+            <DrawerDescription>Set your car's location to get washed</DrawerDescription>
           </DrawerHeader>
           <div className="p-4 pb-0">
             <div className="flex items-center justify-center space-x-2">
-            <h1>Test</h1>
+              <AutoCompleteAdress />
               </div>
             
           </div>
           <DrawerFooter>
             <Button>Submit</Button>
-            <DrawerClose asChild >
-              <Button variant="outline">Cancel</Button>
-            </DrawerClose>
           </DrawerFooter>
         </div>
       </DrawerContent>
