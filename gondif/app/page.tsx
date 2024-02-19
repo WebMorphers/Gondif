@@ -43,12 +43,11 @@ const [openDrawer,setopenDrawer] = useState(true);
       <CoordinatesWraper>
           <div className="relative h-screen overflow-hidden ">
 
-            <VehiculeType />
       <MapBoxMap />
       { UserLocation ?
-
-        <ExtraDetails />
-    : null}
+ 
+ <VehiculeType />
+ : null}
         </div>
         </CoordinatesWraper>
                 </UserLocationContext.Provider>

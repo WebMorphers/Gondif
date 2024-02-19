@@ -40,18 +40,18 @@ const VehiculeType = () => {
                 <DrawerHeader>
                   <DrawerTitle>Vehicle type</DrawerTitle>
                  </DrawerHeader>
-                <div className="p-4 pb-0">
+                <div className="">
                   <div className="flex items-center flex-col justify-center gap-3">
                     <Card >
                   <div className="shadow-md rounded-md flex flex-row p-4 gap-7">
-                    <img src={Small.src} className="w-20 h-20" alt="" />
+                    <img src={Small.src} className="w-20" alt="" />
                     <div>
                       <h1 className="hover:text-[#9FE870] text-[#163300] font-bold">Small vehicle</h1>
                       <p className="text-[#8996A2] text-xs">Sudans and SUVs. <br />  vehicles regular people use.</p>
                     </div>
                     <div>
-                      <h1 className="text-[#163300] text-[13px]"> MAD 10 - 90</h1>
-                      <p className="text-[#8996A2] text-[11px] "> 25 mins</p>
+                      <h1 className="text-[#163300] text-[13px]">MAD 10 - 90</h1>
+                      <p className="text-[#8996A2] text-[11px] ">25 mins</p>
                     </div>
                    </div> 
 </Card>
