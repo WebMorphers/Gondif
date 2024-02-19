@@ -2,8 +2,8 @@
 
 import { UserLocationContext } from '@/context/UserLocationContext'
 import { Content } from 'next/font/google'
-import React, { useContext,useEffect } from 'react'
-import { Map, Marker } from 'react-map-gl'
+import React, { useContext,useEffect, useRef, useState } from 'react'
+import { AttributionControl, Map, Marker, NavigationControl, Popup } from 'react-map-gl'
 import markerIcon from '@/public/marker-icon.png'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Image from 'next/image'
@@ -14,7 +14,11 @@ import {  CoordinatesWraper, useCoordinatesContext } from '@/context/Coordinates
 
 export default function MapBoxMap() {
 
+    const mapRef=useRef<any>();
+
+    const { Coordinates, setCoordinates } = useCoordinatesContext();
     const { UserLocation,setUserLocation } = useContext(UserLocationContext)
+
     useEffect(()=> {
         navigator.geolocation.getCurrentPosition(function(props){
             console.log(props);
@@ -24,9 +28,20 @@ export default function MapBoxMap() {
             })
           })
     },[])
+
+    useEffect(()=> {
+        if(Coordinates)
+        mapRef.current.flyTo({
+            center: [Coordinates.lng,Coordinates.lat],
+            zoom: 14,
+            duration:2500
+        })
+    },[Coordinates])
+
+
     
-    
-    const { Coordinates, setCoordinates } = useCoordinatesContext();
+
+
 
 return (
 <CoordinatesWraper>
@@ -34,7 +49,9 @@ return (
         {UserLocation?
             
             <Map 
+        ref={mapRef}
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOCKEN}
+
         initialViewState={{
                 longitude: UserLocation?.lng, 
                 latitude: UserLocation?.lat,
@@ -42,13 +59,21 @@ return (
         }}
         style={{width: '100%', height: '100%', background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0))'}}
         mapStyle="mapbox://styles/mapbox/navigation-night-v1"
+        attributionControl={false}
+
         >
+
+            
+            <NavigationControl />
+
+            <AttributionControl customAttribution="Gondif" />
+
             {Coordinates?
             <Marker 
             longitude={Coordinates?.lng}
             latitude={Coordinates?.lat}
             anchor="bottom" 
-            draggable>
+            >
                 <img src="marker-icon.png" width={30}  />
             </Marker>
             :
@@ -56,7 +81,7 @@ return (
             longitude={UserLocation?.lng}
             latitude={UserLocation?.lat}
             anchor="bottom" 
-            draggable>
+            >
                 <img src="marker-icon.png" width={30}  />
             </Marker>}   
         </Map>
