@@ -10,12 +10,13 @@ function AutoCompleteAdress() {
   const [AdressList,setAdressList] = useState<any>(null);
 
   useEffect(()=> {
+    if (source) {
       const DelayedRequest = setTimeout(()=>{
       getAdressList()
       console.log(AdressList);
     },1000)
     return ()=> clearTimeout(DelayedRequest)  //reset timeout
-
+  }
   },[source])
 
   const getAdressList = async () => {
