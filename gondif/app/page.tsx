@@ -17,12 +17,13 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import MapBoxMap from "./Map/MapBoxMap"
 import { useSession } from "next-auth/react"
 import { UserLocationContext } from "@/context/UserLocationContext"
 import DropdownMenu from "@/components/dropDown/dropdownMenu"
 import AutoCompleteAdress from "@/components/AutoCompleteAdress"
+import { CoordinatesContext } from "@/context/CoordinatesContext"
 
 
 
@@ -30,7 +31,10 @@ export default function Home() {
   const [isOpen, setIsOpen] = useState(true);  
 const session = useSession();
 
-  const [openDrawer,setopenDrawer] = useState(true);
+const contextValue = useContext(CoordinatesContext);
+const { Coordinates, setCoordinates } = contextValue || {};
+
+const [openDrawer,setopenDrawer] = useState(true);
 
   useEffect(() => {
     getUserLocation()
@@ -47,8 +51,9 @@ const session = useSession();
   })}
   
   return (
-      
+      <>
     <UserLocationContext.Provider value={{UserLocation,setUserLocation}}>
+      <CoordinatesContext.Provider value={{Coordinates,setCoordinates}}>
           <div className="relative h-screen overflow-hidden ">
 
             <DropdownMenu />
@@ -81,8 +86,8 @@ const session = useSession();
     </Drawer>
     : null}
         </div>
-
+        </CoordinatesContext.Provider>
         </UserLocationContext.Provider>
-
+        </>
   )
 }

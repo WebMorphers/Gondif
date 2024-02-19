@@ -7,7 +7,7 @@ function AutoCompleteAdress() {
   
   const [source,setSource] = useState<any>(null);
 
-  const [sourceCoordinates, setSourceCoordinates] = useState<any>(null);
+  const [Coordinates, setCoordinates] = useState<any>(null);
 
   const [AdressList,setAdressList] = useState<any>(null);
 
@@ -30,6 +30,18 @@ function AutoCompleteAdress() {
     const data = await res.json()
     setAdressList(data);
     console.log(data);
+    if (data.features && data.features.length > 0) {
+      // Access the first feature's geometry.coordinates
+      const coordinates = {
+        lng: data.features[0].geometry.coordinates[0],
+        lat: data.features[0].geometry.coordinates[1],
+      };
+    
+      // Set the coordinates using setCoordinates
+      setCoordinates(coordinates);
+    }
+    console.log(Coordinates);
+
   }
 
   const onSourceClick= async(item:any)=> {

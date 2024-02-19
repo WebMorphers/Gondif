@@ -6,6 +6,7 @@ import markerIcon from '@/public/marker-icon.png'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Image from 'next/image'
 import LocalisationIcon from '@/public/location-icon.png'
+import { CoordinatesContext } from '@/context/CoordinatesContext'
 
 
 
@@ -23,9 +24,11 @@ export default function MapBoxMap() {
     },[])
     
     
-
+    const contextValue = useContext(CoordinatesContext);
+    const { Coordinates, setCoordinates } = contextValue || {};
 
 return (
+    <CoordinatesContext.Provider value={{Coordinates,setCoordinates}}>
     <div className='h-screen w-screen flex justify-center items-center'> 
         {UserLocation?
             
@@ -39,14 +42,15 @@ return (
         style={{width: '100%', height: '100%', background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0))'}}
         mapStyle="mapbox://styles/mapbox/navigation-night-v1"
         >
-            <Marker 
-            longitude={UserLocation?.lng}
-            latitude={UserLocation?.lat}
+            {Coordinates?<Marker 
+            longitude={Coordinates?.lng}
+            latitude={Coordinates?.lat}
             anchor="bottom" 
             draggable>
                 <img src="marker-icon.png" width={30}  />
             </Marker>
-            
+            :
+            null}   
         </Map>
         : 
         <div className='py-12 flex justify-center items-center flex-col gap-3'>
@@ -58,5 +62,6 @@ return (
         </div>}
         
     </div>
+    </CoordinatesContext.Provider>
 )
 }
