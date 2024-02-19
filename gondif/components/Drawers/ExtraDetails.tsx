@@ -37,7 +37,7 @@ const ExtraDetails = () => {
                 <DrawerHeader>
                   <DrawerTitle className="text-start font-extrabold text-2xl">Extra details</DrawerTitle>
                  </DrawerHeader>
-
+                  
                   <Card>
                     <CardContent>
                       <div className="flex flex-col gap-5 mt-5">
