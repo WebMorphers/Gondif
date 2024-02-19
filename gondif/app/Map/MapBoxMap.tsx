@@ -26,6 +26,8 @@ export default function MapBoxMap() {
     
     const contextValue = useContext(CoordinatesContext);
     const { Coordinates, setCoordinates } = contextValue || {};
+    useEffect(() => {console.log(Coordinates);},[Coordinates])
+    
 
 return (
     <CoordinatesContext.Provider value={{Coordinates,setCoordinates}}>
