@@ -50,7 +50,7 @@ const VehiculeType = () => {
 
   return (
     <div>
-      <Drawer open={isOpen} modal={false} onClose={() => setIsOpen(false)}>
+      <Drawer open={isOpen} modal={true} onClose={() => setIsOpen(false)}>
         {!isOpen && <DrawerTrigger className="absolute h-screen w-screen opacity-0 top-0" onClick={() => setIsOpen(true)}></DrawerTrigger>}  
         <DrawerPortal>
           <DrawerOverlay className="fixed inset-0 bg-black/40" />
@@ -61,7 +61,7 @@ const VehiculeType = () => {
               </DrawerHeader>
               <div className="">
                 <div className="flex items-center flex-col justify-between gap-3 w-full">
-                  <Card onClick={handleCardClick} className={isClicked ? "scale-105 w-full" : "grayscale w-full"} > 
+                  <Card onClick={handleCardClick} className={isClicked ? "scale-105 w-full border-2 border-[#9FE870]" : "grayscale w-full"} > 
                     <div className="shadow-md rounded-md flex flex-row p-4  gap-3 items-center w-full">
                         <img src={Small.src} width={80} />
                       <div className="flex flex-col flex-1 gap-1">
@@ -74,7 +74,7 @@ const VehiculeType = () => {
                       </div>
                     </div> 
                   </Card>
-                  <Card onClick={handleCardClick2} className={isClicked2 ? "scale-105 w-full" : "grayscale w-full"}>
+                  <Card onClick={handleCardClick2} className={isClicked2 ? "scale-105 w-full border-2 border-[#9FE870]" : "grayscale w-full"}>
                     <div className="shadow-md rounded-md flex flex- p-4 justify-between gap-3 items-center">
                         <img src={Medium.src}  width={80} />
                       <div className="flex flex-col flex-1 gap-1">
@@ -87,7 +87,7 @@ const VehiculeType = () => {
                       </div>
                     </div> 
                   </Card>
-                  <Card onClick={handleCardClick3} className={isClicked3 ? "scale-105 w-full" : "grayscale w-full"}>
+                  <Card onClick={handleCardClick3} className={isClicked3 ? "scale-105 w-full border-2 border-[#9FE870]" : "grayscale w-full"}>
                     <div className="shadow-md rounded-md flex flex-row p-4 gap-6 items-center">
                       <img src={Large.src} width={80} />
                       <div className="flex flex-col flex-1 gap-1">

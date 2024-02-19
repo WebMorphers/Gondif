@@ -21,14 +21,25 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
+import { useState } from "react"
  
 const ExtraDetails = () => {
-  const [isOpen, setIsOpen] = React.useState(true);  
- 
+  const [isOpen, setIsOpen] = useState(true);  
+  const [selected, setSelected] = useState<any>(null)
+
+  const handleCheckboxChange = (index:any) => {
+    if (selected === index) {
+      setSelected(null)
+    } else {
+      setSelected(index)
+    }
+  
+  }
+
   return (
     <div>
       
-        <Drawer open={isOpen} modal={false} onClose={() => setIsOpen(false)}>
+        <Drawer open={isOpen} modal={true} onClose={() => setIsOpen(false)}>
           {!isOpen && <DrawerTrigger className="absolute h-screen w-screen opacity-0 top-0" onClick={() => setIsOpen(true)}></DrawerTrigger>}  
           <DrawerPortal>
             <DrawerOverlay className="fixed inset-0 bg-black/40" />
@@ -46,6 +57,9 @@ const ExtraDetails = () => {
                               <input
                               type="checkbox"
                               className="size-5 mt-2 text-[#9FE870] bg-white"
+                              checked={selected === 0}
+                              onChange={() => handleCheckboxChange(0)}
+  
                                 />
                             </div>
                             <div>
@@ -58,6 +72,8 @@ const ExtraDetails = () => {
                               <input
                               type="checkbox"
                               className="size-5 mt-2 text-[#9FE870] bg-white"
+                              checked={selected === 1}
+                              onChange={() => handleCheckboxChange(1)}
                                 />
                             </div>
                             <div>
@@ -69,7 +85,7 @@ const ExtraDetails = () => {
                       </CardContent>
                     </Card>
                     <div className="flex flex-col gap-3">
-                    <Card>
+                  <Card className="cursor-pointer">
                     <CardContent>
                       <div className="flex justify-between mt-5 alig">
                         <div className="">
@@ -83,7 +99,7 @@ const ExtraDetails = () => {
                       </div>
                     </CardContent>
                   </Card>
-                  <Card>
+                  <Card className="cursor-pointer">
                     <CardContent>
                       <div className="flex justify-between mt-5 alig">
                         <div className="">
