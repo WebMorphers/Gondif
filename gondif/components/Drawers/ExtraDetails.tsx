@@ -103,7 +103,7 @@ const ExtraDetails = () => {
 
 
                 <DrawerFooter>
-                  <Button className="bg-[#9FE870] text-[#163300] ">Confirm Vehicle</Button>
+                  <Button className="bg-[#9FE870] text-[#163300] ">Confirm</Button>
                 </DrawerFooter>
               </div>
             </DrawerContent>
