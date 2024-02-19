@@ -1,7 +1,11 @@
 "use client"
 import * as React from "react"
- 
+import {Card, CardBody} from "@nextui-org/react";
 import { Button } from "@/components/ui/button"
+import Small from '../../public/Small Vehicle.png'
+import Medium from '../../public/Medium Vehicle.png'
+import Large from '../../public/Large Vehicle.png'
+
 import {
   Drawer,
   DrawerContent,
@@ -31,7 +35,40 @@ const VehiculeType = () => {
                  </DrawerHeader>
                 <div className="p-4 pb-0">
                   <div className="flex items-center flex-col justify-center space-x-2">
-           
+                   <div className="shadow-md rounded-md flex flex-row p-4">
+                    <img src={Small.src} alt="" />
+                    <div>
+                      <h1 className="text-[#9FE870]">Small vehicle</h1>
+                      <p className="text-[#8996A2]">Sudans and SUVs. <br />  vehicles regular people use.</p>
+                    </div>
+                    <div>
+                      <h1> MAD 10 - 90</h1>
+                      <p className="text-[#8996A2]"> 25 mins</p>
+                    </div>
+                   </div>
+                   <div className="shadow-md rounded-md flex flex-row p-4">
+                    <img src={Small.src} alt="" />
+                    <div>
+                      <h1 className="text-[#9FE870]">Small vehicle</h1>
+                      <p className="text-[#8996A2]">Sudans and SUVs. <br />  vehicles regular people use.</p>
+                    </div>
+                    <div>
+                      <h1> MAD 10 - 90</h1>
+                      <p className="text-[#8996A2]"> 25 mins</p>
+                    </div>
+                   </div>
+                   <div className="shadow-md rounded-md flex flex-row p-4">
+                    <img src={Small.src} alt="" />
+                    <div>
+                      <h1 className="text-[#9FE870]">Small vehicle</h1>
+                      <p className="text-[#8996A2]">Sudans and SUVs. <br />  vehicles regular people use.</p>
+                    </div>
+                    <div>
+                      <h1> MAD 10 - 90</h1>
+                      <p className="text-[#8996A2]"> 25 mins</p>
+                    </div>
+                   </div>
+      
                    </div>
                 </div>
                 <DrawerFooter>
