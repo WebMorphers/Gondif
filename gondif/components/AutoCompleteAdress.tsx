@@ -30,7 +30,6 @@ function AutoCompleteAdress() {
     const data = await res.json()
     setAdressList(data);
     console.log(data);
-    setSourceCoordinates()
   }
 
   const onSourceClick= async(item:any)=> {
