@@ -7,6 +7,8 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+
   ],
   prefix: "",
   theme: {
@@ -33,7 +35,7 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
-  },
+  },  
   plugins: [require("tailwindcss-animate")],
 } satisfies Config
 

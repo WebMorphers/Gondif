@@ -12,6 +12,8 @@ import DropdownMenu from "@/components/dropDown/dropdownMenu"
 import AutoCompleteAdress from "@/components/AutoCompleteAdress"
 import { CoordinatesWraper, useCoordinatesContext } from "@/context/CoordinatesContext"
 import AddPosition from "@/components/Drawers/AddPosition"
+import VehiculeType from "@/components/Drawers/VehiculeType"
+
 
 
 
@@ -45,7 +47,8 @@ const [openDrawer,setopenDrawer] = useState(true);
       <MapBoxMap />
       { UserLocation ?
 
-        <AddPosition />
+         <VehiculeType />
+
     : null}
         </div>
         </CoordinatesWraper>
