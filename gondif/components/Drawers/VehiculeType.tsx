@@ -24,6 +24,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import Image from "next/image";
 
 const VehiculeType = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -60,9 +61,9 @@ const VehiculeType = () => {
               </DrawerHeader>
               <div className="">
                 <div className="flex items-center flex-col justify-between gap-3 w-full">
-                  <Card onClick={handleCardClick} className={isClicked ? "scale-105" : "grayscale"} > 
+                  <Card onClick={handleCardClick} className={isClicked ? "scale-105 w-full" : "grayscale w-full"} > 
                     <div className="shadow-md rounded-md flex flex-row p-4  gap-3 items-center w-full">
-                      <img src={Small.src} width={60} alt="" />
+                        <img src={Small.src} width={80} />
                       <div className="flex flex-col flex-1 gap-1">
                         <h1 style={{ color: isClicked ? '#9FE870' : '#163300' }} className="font-bold">Small vehicle</h1>
                         <p className="text-[#8996A2] text-xs">Sudans and SUVs. <br />  vehicles regular people use.</p>
@@ -73,9 +74,9 @@ const VehiculeType = () => {
                       </div>
                     </div> 
                   </Card>
-                  <Card onClick={handleCardClick2} className={isClicked2 ? "scale-105" : ""}>
+                  <Card onClick={handleCardClick2} className={isClicked2 ? "scale-105 w-full" : "grayscale w-full"}>
                     <div className="shadow-md rounded-md flex flex- p-4 justify-between gap-3 items-center">
-                      <img src={Medium.src} width={60} alt="" />
+                        <img src={Medium.src}  width={80} />
                       <div className="flex flex-col flex-1 gap-1">
                         <h1 style={{ color: isClicked2 ? '#9FE870' : '#163300' }} className="font-bold">Medium vehicle</h1>
                         <p className="text-[#8996A2] text-xs">Vans and Light trucks.<br />Family and business vehicles.</p>
@@ -86,9 +87,9 @@ const VehiculeType = () => {
                       </div>
                     </div> 
                   </Card>
-                  <Card onClick={handleCardClick3} className={isClicked3 ? "scale-105" : ""}>
+                  <Card onClick={handleCardClick3} className={isClicked3 ? "scale-105 w-full" : "grayscale w-full"}>
                     <div className="shadow-md rounded-md flex flex-row p-4 gap-6 items-center">
-                      <img src={Large.src} width={60} alt=""/>
+                      <img src={Large.src} width={80} />
                       <div className="flex flex-col flex-1 gap-1">
                         <h1 style={{ color: isClicked3 ? '#9FE870' : '#163300' }} className="font-bold">Large vehicle</h1>
                         <p className="text-[#8996A2] text-xs">Trucks and Buses. <br />vehicles of big trasports.</p>

@@ -18,7 +18,6 @@ function AutoCompleteAdress() {
     if (source) {
       const DelayedRequest = setTimeout(()=>{
       getAdressList()
-      console.log(AdressList);
     },1000)
     return ()=> clearTimeout(DelayedRequest)  //reset timeout
   }
@@ -58,8 +57,8 @@ function AutoCompleteAdress() {
   return (
     
     <div>
-        <label>The Car's Address</label>
-        <input type="text"
+        <label>The Car&apos;s Address</label>
+        <input type='text' name='address'
          className='bg-white p-1 border w-full rounded-md outline-none '
          value={source}
          onChange={(e)=>setSource(e.target.value)}></input>
@@ -68,6 +67,7 @@ function AutoCompleteAdress() {
         <div className=' h-full text-black z-10 shadow-lg w-full rounded-xl'>
         {AdressList?.data?.suggestions.map((item:any,index:number)=>(
           <div           
+          key={index}
           className='bg-gray-100 hover:bg-gray-200 p-1 px-2 cursor-pointer'
           onClick={()=>{
             onSourceClick(item)

@@ -71,7 +71,7 @@ return (
             latitude={Coordinates?.lat}
             anchor="bottom" 
             >
-                <img src="marker-icon.png" width={30}  />
+                <Image src={markerIcon} width={40} alt='marker' />
             </Marker>
             :
             <Marker 
@@ -79,7 +79,7 @@ return (
             latitude={UserLocation?.lat}
             anchor="bottom" 
             >
-                <img src="marker-icon.png" width={30}  />
+                <Image src={markerIcon} width={40} alt='marker' />
             </Marker>}   
         </Map>
         : 

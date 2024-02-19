@@ -26,7 +26,7 @@ const AddPosition = () => {
   <div className="max-w-md w-full mx-auto flex flex-col overflow-auto p-4 rounded-t-[10px]">
   <DrawerHeader>
     <DrawerTitle>Your location </DrawerTitle>
-    <DrawerDescription>Set your car's location to get washed</DrawerDescription>
+    <DrawerDescription>Set your car&apos;s location to get washed</DrawerDescription>
   </DrawerHeader>
   <div className="p-4 pb-0">
     <div className="flex items-center justify-center space-x-2">
