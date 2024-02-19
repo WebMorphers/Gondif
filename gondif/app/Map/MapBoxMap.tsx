@@ -31,7 +31,7 @@ export default function MapBoxMap() {
 
     useEffect(()=> {
         if(Coordinates)
-        mapRef.current.flyTo({
+        mapRef.current?.flyTo({
             center: [Coordinates.lng,Coordinates.lat],
             zoom: 14,
             duration:2500
@@ -58,13 +58,10 @@ return (
                 zoom: 14
         }}
         style={{width: '100%', height: '100%', background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0))'}}
-        mapStyle="mapbox://styles/mapbox/navigation-night-v1"
-        attributionControl={false}
-
-        >
+        mapStyle="mapbox://styles/mapbox/standard"        >
 
             
-            <NavigationControl />
+            <NavigationControl position='top-left' />
 
             <AttributionControl customAttribution="Gondif" />
 
