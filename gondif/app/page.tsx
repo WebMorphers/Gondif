@@ -46,7 +46,7 @@ const [openDrawer,setopenDrawer] = useState(true);
       <MapBoxMap />
       { UserLocation ?
  
-        <VehiculeType />
+        <ExtraDetails />
  : null}
         </div>
         </CoordinatesWraper>

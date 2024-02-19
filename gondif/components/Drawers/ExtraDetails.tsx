@@ -37,7 +37,7 @@ const ExtraDetails = () => {
                 <DrawerHeader>
                   <DrawerTitle className="text-start font-extrabold text-2xl">Extra details</DrawerTitle>
                  </DrawerHeader>
-                  <div className="flex flex-col gap-5">
+                  <div className="flex flex-col gap-7">
                     <Card>
                       <CardContent>
                         <div className="flex flex-col gap-5 mt-5">
@@ -71,14 +71,28 @@ const ExtraDetails = () => {
                     <div className="flex flex-col gap-3">
                     <Card>
                     <CardContent>
-                      <div className="flex justify-between mt-5">
+                      <div className="flex justify-between mt-5 alig">
                         <div className="">
-                          <CardTitle>Water</CardTitle>
-                          <CardDescription className="text-xs mt-1">Sudans and SUVs. <br />vehicles regular people use.</CardDescription>
+                          <CardTitle className="font-bold">Water</CardTitle>
+                          <CardDescription className="mt-1 leading-4">Sudans and SUVs. <br />vehicles regular people use.</CardDescription>
                         </div>
-                        <div> 
-                         <CardTitle>Water</CardTitle>
-                         <CardDescription className="text-xs mt-1">Sudans and SUVs. <br />vehicles regular people use.</CardDescription>
+                        <div className="flex flex-col items-center"> 
+                         <CardTitle>+ 10 MAD</CardTitle>
+                         <CardDescription className="text-xs mt-1">+ 8 mins</CardDescription>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                  <Card>
+                    <CardContent>
+                      <div className="flex justify-between mt-5 alig">
+                        <div className="">
+                          <CardTitle className="font-bold">Without Water</CardTitle>
+                          <CardDescription className=" mt-1 leading-4">Vans and Light trucks.<br />Family and business vehicles.</CardDescription>
+                        </div>
+                        <div className="flex flex-col items-center"> 
+                         <CardTitle>+ 0 MAD</CardTitle>
+                         <CardDescription className="text-xs mt-1"> 0 mins</CardDescription>
                         </div>
                       </div>
                     </CardContent>
@@ -89,7 +103,7 @@ const ExtraDetails = () => {
 
 
                 <DrawerFooter>
-                  <Button className="bg-[#9FE870] text-[#163300] ">Confirm Vehicle</Button>
+                  <Button className="bg-[#9FE870] text-[#163300] ">Confirm</Button>
                 </DrawerFooter>
               </div>
             </DrawerContent>
