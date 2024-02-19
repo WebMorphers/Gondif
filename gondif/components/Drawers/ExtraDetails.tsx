@@ -37,37 +37,56 @@ const ExtraDetails = () => {
                 <DrawerHeader>
                   <DrawerTitle className="text-start font-extrabold text-2xl">Extra details</DrawerTitle>
                  </DrawerHeader>
-
-                  <Card>
-                    <CardContent>
-                      <div className="flex flex-col gap-5 mt-5">
-                        <div className="flex gap-5">
-                          <div >
-                            <input
-                             type="checkbox"
-                             className="size-5 mt-2 text-[#9FE870] bg-white"
-                              />
+                  <div className="flex flex-col gap-5">
+                    <Card>
+                      <CardContent>
+                        <div className="flex flex-col gap-5 mt-5">
+                          <div className="flex gap-5">
+                            <div >
+                              <input
+                              type="checkbox"
+                              className="size-5 mt-2 text-[#9FE870] bg-white"
+                                />
+                            </div>
+                            <div>
+                            <CardTitle>Exterior</CardTitle>
+                            <CardDescription className="text-xs mt-1">Sudans and SUVs. <br />vehicles regular people use.</CardDescription>
+                            </div>
                           </div>
-                          <div>
-                          <CardTitle>Exterior</CardTitle>
-                          <CardDescription className="text-xs mt-1">Sudans and SUVs. <br />vehicles regular people use.</CardDescription>
+                          <div className="flex gap-5">
+                            <div >
+                              <input
+                              type="checkbox"
+                              className="size-5 mt-2 text-[#9FE870] bg-white"
+                                />
+                            </div>
+                            <div>
+                            <CardTitle>Interior</CardTitle>
+                            <CardDescription className="text-xs mt-1">Sudans and SUVs. <br />vehicles regular people use.</CardDescription>
+                            </div>
                           </div>
                         </div>
-                        <div className="flex gap-5">
-                          <div >
-                            <input
-                             type="checkbox"
-                             className="size-5 mt-2 text-[#9FE870] bg-white"
-                              />
-                          </div>
-                          <div>
-                          <CardTitle>Interior</CardTitle>
+                      </CardContent>
+                    </Card>
+                    <div className="flex flex-col gap-3">
+                    <Card>
+                    <CardContent>
+                      <div className="flex justify-between mt-5">
+                        <div className="">
+                          <CardTitle>Water</CardTitle>
                           <CardDescription className="text-xs mt-1">Sudans and SUVs. <br />vehicles regular people use.</CardDescription>
-                          </div>
+                        </div>
+                        <div> 
+                         <CardTitle>Water</CardTitle>
+                         <CardDescription className="text-xs mt-1">Sudans and SUVs. <br />vehicles regular people use.</CardDescription>
                         </div>
                       </div>
                     </CardContent>
                   </Card>
+
+                    </div>
+                  </div>
+
 
                 <DrawerFooter>
                   <Button className="bg-[#9FE870] text-[#163300] ">Confirm Vehicle</Button>
