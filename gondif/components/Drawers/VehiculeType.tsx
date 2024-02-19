@@ -28,11 +28,24 @@ import {
 const VehiculeType = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [isClicked, setIsClicked] = useState(false);
+  const [isClicked2, setIsClicked2] = useState(false);
+  const [isClicked3, setIsClicked3] = useState(false);
 
   const handleCardClick = () => {
-    setIsClicked(!isClicked);
-     // Toggle the clicked state
-  };
+    setIsClicked(true);
+    setIsClicked2(false);
+    setIsClicked3(false);
+   };
+   const handleCardClick2 = () => {
+    setIsClicked(false);
+    setIsClicked2(true);
+    setIsClicked3(false);
+   };
+   const handleCardClick3 = () => {
+    setIsClicked(false);
+    setIsClicked2(false);
+    setIsClicked3(true);
+   };
 
   return (
     <div>
@@ -57,6 +70,32 @@ const VehiculeType = () => {
                       <div className="flex flex-col justify-center items-center">
                         <h1 className="text-[#163300] text-[13px] font-bold">MAD 10 - 90</h1>
                         <p className="text-[#8996A2] text-[11px] ">25 mins</p>
+                      </div>
+                    </div> 
+                  </Card>
+                  <Card onClick={handleCardClick2} className={isClicked2 ? "scale-105" : ""}>
+                    <div className="shadow-md rounded-md flex flex-row p-4 gap-7">
+                      <img src={Medium.src} className="w-20" alt="" />
+                      <div className="flex flex-col flex-1 gap-1">
+                        <h1 style={{ color: isClicked2 ? '#9FE870' : '#163300' }} className="font-bold">Medium vehicle</h1>
+                        <p className="text-[#8996A2] text-xs">Vans and Light trucks.<br />Family and business vehicles.</p>
+                      </div>
+                      <div className="flex flex-col justify-center items-center">
+                        <h1 className="text-[#163300] text-[13px] font-bold">MAD 30 - 110</h1>
+                        <p className="text-[#8996A2] text-[11px] ">25 mins</p>
+                      </div>
+                    </div> 
+                  </Card>
+                  <Card onClick={handleCardClick3} className={isClicked3 ? "scale-105" : ""}>
+                    <div className="shadow-md rounded-md flex flex-row p-4 gap-7">
+                      <img src={Large.src} className="w-20" alt="" />
+                      <div className="flex flex-col flex-1 gap-1">
+                        <h1 style={{ color: isClicked3 ? '#9FE870' : '#163300' }} className="font-bold">Large vehicle</h1>
+                        <p className="text-[#8996A2] text-xs">Trucks and Buses. <br />vehicles of big trasports.</p>
+                      </div>
+                      <div className="flex flex-col justify-center items-center">
+                        <h1 className="text-[#163300] text-[13px] font-bold">MAD 60 - 190</h1>
+                        <p className="text-[#8996A2] text-[11px] ">1h 20mins</p>
                       </div>
                     </div> 
                   </Card>
