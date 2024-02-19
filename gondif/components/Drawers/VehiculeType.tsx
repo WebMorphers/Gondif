@@ -95,7 +95,7 @@ const VehiculeType = () => {
                       </div>
                       <div className="flex flex-col justify-center items-center">
                         <h1 className="text-[#163300] text-[13px] font-bold">MAD 60 - 190</h1>
-                        <p className="text-[#8996A2] text-[11px] ">1h 20mins</p>
+                        <p className="text-[#8996A2] text-[11px] ">1h 20 mins</p>
                       </div>
                     </div> 
                   </Card>
