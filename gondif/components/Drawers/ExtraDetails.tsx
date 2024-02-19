@@ -91,8 +91,8 @@ const ExtraDetails = () => {
                           <CardDescription className=" mt-1 leading-4">Vans and Light trucks.<br />Family and business vehicles.</CardDescription>
                         </div>
                         <div className="flex flex-col items-center"> 
-                         <CardTitle>+ 10 MAD</CardTitle>
-                         <CardDescription className="text-xs mt-1">+ 8 mins</CardDescription>
+                         <CardTitle>+ 0 MAD</CardTitle>
+                         <CardDescription className="text-xs mt-1"> 0 mins</CardDescription>
                         </div>
                       </div>
                     </CardContent>
