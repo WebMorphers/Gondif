@@ -23,7 +23,7 @@ import { useSession } from "next-auth/react"
 import { UserLocationContext } from "@/context/UserLocationContext"
 import DropdownMenu from "@/components/dropDown/dropdownMenu"
 import AutoCompleteAdress from "@/components/AutoCompleteAdress"
-import { CoordinatesContext } from "@/context/CoordinatesContext"
+import { CoordinatesWraper, useCoordinatesContext } from "@/context/CoordinatesContext"
 
 
 
@@ -31,8 +31,6 @@ export default function Home() {
   const [isOpen, setIsOpen] = useState(true);  
 const session = useSession();
 
-const contextValue = useContext(CoordinatesContext);
-const { Coordinates, setCoordinates } = contextValue || {};
 
 const [openDrawer,setopenDrawer] = useState(true);
 
@@ -53,7 +51,7 @@ const [openDrawer,setopenDrawer] = useState(true);
   return (
       <>
     <UserLocationContext.Provider value={{UserLocation,setUserLocation}}>
-      <CoordinatesContext.Provider value={{Coordinates,setCoordinates}}>
+      <CoordinatesWraper>
           <div className="relative h-screen overflow-hidden ">
 
             <DropdownMenu />
@@ -86,8 +84,8 @@ const [openDrawer,setopenDrawer] = useState(true);
     </Drawer>
     : null}
         </div>
-        </CoordinatesContext.Provider>
-        </UserLocationContext.Provider>
+        </CoordinatesWraper>
+                </UserLocationContext.Provider>
         </>
   )
 }

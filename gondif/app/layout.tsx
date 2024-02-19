@@ -8,6 +8,7 @@ import SessionProvider from './SessionProvider/page';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
  import DropdownMenu from "@/components/dropDown/dropdownMenu";
 import Login from "./login/page";
+import { CoordinatesWraper } from "@/context/CoordinatesContext";
 
   
 export const viewport: Viewport = {
@@ -46,10 +47,11 @@ export default async function RootLayout({
     <link rel="manifest" href="/manifest.json" />
     <body className={urbanist.className}>
       <SessionProvider session={session}>
+        <CoordinatesWraper>
         {!session ? <Login /> :
          children
          }
-        
+        </CoordinatesWraper>
       </SessionProvider>
     </body>
   </html>

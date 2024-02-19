@@ -1,3 +1,5 @@
+"use client"
+
 import { UserLocationContext } from '@/context/UserLocationContext'
 import { Content } from 'next/font/google'
 import React, { useContext,useEffect } from 'react'
@@ -6,7 +8,7 @@ import markerIcon from '@/public/marker-icon.png'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Image from 'next/image'
 import LocalisationIcon from '@/public/location-icon.png'
-import { CoordinatesContext } from '@/context/CoordinatesContext'
+import {  CoordinatesWraper, useCoordinatesContext } from '@/context/CoordinatesContext'
 
 
 
@@ -24,14 +26,11 @@ export default function MapBoxMap() {
     },[])
     
     
-    const contextValue = useContext(CoordinatesContext);
-    const { Coordinates, setCoordinates } = contextValue || {};
-    useEffect(() => {console.log(Coordinates);},[Coordinates])
-    
+    const { Coordinates, setCoordinates } = useCoordinatesContext();
 
 return (
-    <CoordinatesContext.Provider value={{Coordinates,setCoordinates}}>
-    <div className='h-screen w-screen flex justify-center items-center'> 
+<CoordinatesWraper>
+<div className='h-screen w-screen flex justify-center items-center'> 
         {UserLocation?
             
             <Map 
@@ -64,6 +63,5 @@ return (
         </div>}
         
     </div>
-    </CoordinatesContext.Provider>
-)
+    </CoordinatesWraper>)
 }

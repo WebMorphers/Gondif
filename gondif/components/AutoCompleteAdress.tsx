@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react'
+"use client"
+
+import { CoordinatesWraper, useCoordinatesContext } from '@/context/CoordinatesContext';
+import React, { useContext, useEffect, useState } from 'react'
 
 const MAPBOX_RETRIEVE_URL="https://api.mapbox.com/search/searchbox/v1/retrieve/"
 const MAPBOX_SESSION_TOKEN='b6844ea0-751a-478e-ac07-b155204cb99e'
@@ -7,7 +10,7 @@ function AutoCompleteAdress() {
   
   const [source,setSource] = useState<any>(null);
 
-  const [Coordinates, setCoordinates] = useState<any>(null);
+  const { Coordinates, setCoordinates }= useCoordinatesContext();
 
   const [AdressList,setAdressList] = useState<any>(null);
 
@@ -40,20 +43,20 @@ function AutoCompleteAdress() {
     const res = await fetch(MAPBOX_RETRIEVE_URL+item.mapbox_id+'?session_token='+MAPBOX_SESSION_TOKEN+'&access_token=pk.eyJ1Ijoic2VhcmNoLW1hY2hpbmUtdXNlci0xIiwiYSI6ImNrNnJ6bDdzdzA5cnAza3F4aTVwcWxqdWEifQ.RFF7CVFKrUsZVrJsFzhRvQ' )
     const data = await res.json() 
     console.log(data)
-    if (data.features && data.features.length > 0) {
       // Access the first feature's geometry.coordinates
-      const coordinates = {
+      setCoordinates( {
         lng: data.features[0].geometry.coordinates[0],
         lat: data.features[0].geometry.coordinates[1],
-      };
+      })
     
       // Set the coordinates using setCoordinates
-      setCoordinates(coordinates);
-    }
-    console.log(Coordinates);
+      console.log(Coordinates)
+
+    
   }
 
   return (
+    
     <div>
         <label>The Car's Address</label>
         <input type="text"
