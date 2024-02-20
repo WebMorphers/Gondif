@@ -26,6 +26,7 @@ import { useState } from "react"
 const ExtraDetails = () => {
   const [isOpen, setIsOpen] = useState(true);  
   const [selected, setSelected] = useState<any>(null)
+  const [cardClick, setCardClick] = useState<number | null>(null)
 
   const handleCheckboxChange = (index:any) => {
     if (selected === index) {
@@ -35,6 +36,9 @@ const ExtraDetails = () => {
     }
   
   }
+  const handleCardClick = (index: number) => {
+    setCardClick(cardClick === index ? null : index);
+  };
 
   return (
     <div>
@@ -85,7 +89,8 @@ const ExtraDetails = () => {
                       </CardContent>
                     </Card>
                     <div className="flex flex-col gap-3">
-                  <Card className="cursor-pointer">
+                  <Card onClick={() => handleCardClick(0)}
+                  className={` ${cardClick === 0 ? "scale-105 border-[#9FE870]" : ""}`}>
                     <CardContent>
                       <div className="flex justify-between mt-5 alig">
                         <div className="">
@@ -99,7 +104,8 @@ const ExtraDetails = () => {
                       </div>
                     </CardContent>
                   </Card>
-                  <Card className="cursor-pointer">
+                  <Card onClick={() => handleCardClick(1)}
+                  className={` ${cardClick === 1 ? "scale-105 border-2 border-[#9FE870]" : ""}`}>
                     <CardContent>
                       <div className="flex justify-between mt-5 alig">
                         <div className="">
