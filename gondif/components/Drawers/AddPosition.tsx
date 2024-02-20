@@ -17,6 +17,10 @@ import Favorit from "../ui/favorit/favorit";
 const AddPosition = () => {
     const [isOpen, setIsOpen] = useState(true);  
 
+
+
+
+
   return (
     <Drawer open={isOpen} modal={false} onClose={() => setIsOpen(false)}>
     {!isOpen && <DrawerTrigger className="absolute h-screen w-screen opacity-0 top-0" onClick={() => setIsOpen(true)}></DrawerTrigger>}  

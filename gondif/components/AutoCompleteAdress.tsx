@@ -39,7 +39,7 @@ function AutoCompleteAdress() {
   const onSourceClick= async(item:any)=> {
     setSource(item.name);
     setAdressList([]);
-    const res = await fetch(MAPBOX_RETRIEVE_URL+item.mapbox_id+'?session_token='+MAPBOX_SESSION_TOKEN+'&access_token=pk.eyJ1Ijoic2VhcmNoLW1hY2hpbmUtdXNlci0xIiwiYSI6ImNrNnJ6bDdzdzA5cnAza3F4aTVwcWxqdWEifQ.RFF7CVFKrUsZVrJsFzhRvQ' )
+    const res = await fetch(MAPBOX_RETRIEVE_URL+item.mapbox_id+'?session_token=[GENERATED-UUIDv4]&access_token=pk.eyJ1Ijoid2VibW9ycGhlcnMiLCJhIjoiY2xzdHBzZml5MTBmcTJsczBvbDV4cmFtbSJ9.Kvwu1Ii4MURfcYNhZL45Bg' )
     const data = await res.json() 
     console.log(data)
       // Access the first feature's geometry.coordinates

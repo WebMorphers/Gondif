@@ -15,7 +15,9 @@ import AddPosition from "@/components/Drawers/AddPosition"
 import VehiculeType from "@/components/Drawers/VehiculeType"
 import ExtraDetails from "@/components/Drawers/ExtraDetails"
 import Payement from "@/components/Drawers/Payement"
-
+import {
+  fromLatLng,
+} from "react-geocode";
 
 
 export default function Home() {
@@ -31,12 +33,23 @@ const [openDrawer,setopenDrawer] = useState(true);
   const [UserLocation,setUserLocation] = useState<any>();
 
   const getUserLocation=()=> { navigator.geolocation.getCurrentPosition(function(props){
-    console.log(props);
     setUserLocation({
       lat:props.coords.latitude,
       lng:props.coords.longitude
     })
   })}
+
+  const adress=fromLatLng(UserLocation?.lat, UserLocation?.lng)
+  .then(({ results }) => {
+    const { lat, lng } = results[0].geometry.location;
+    console.log(lat, lng);
+  })
+  .catch(console.error);
+
+  useEffect(() =>{
+    console.log(adress);
+  
+},[adress]);
   
   return (
       <>
@@ -46,8 +59,7 @@ const [openDrawer,setopenDrawer] = useState(true);
 
       <MapBoxMap />
       { UserLocation ?
- 
-        <Payement />
+        <AddPosition />
  : null}
         </div>
         </CoordinatesWraper>
