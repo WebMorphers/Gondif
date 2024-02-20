@@ -1,4 +1,5 @@
 "use client"
+import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const UserLocationContext=createContext<any>(null);
@@ -9,6 +10,8 @@ export function UserLocationWraper({children}: Readonly<{
 
     const [userLocation,setUserLocation] = useState<any>(null)
 
+    const [userAddress, setUserAddress] = useState<any>(null);
+
     const getUserLocation=()=> { 
         navigator.geolocation.getCurrentPosition(function(props){
             setUserLocation({
@@ -16,14 +19,47 @@ export function UserLocationWraper({children}: Readonly<{
             lng:props.coords.longitude
             })
         })}   
+        
+        function getuserlocalfromxy(){
+            
+            axios.get(apiUrl, {
+              params: {
+                  lat: latitude,
+                  lon: longitude,
+                  lang: language,
+                  apiKey: apiKey
+              }
+          })
+          .then( response => {
+              
+              setUserAddress(response.data);
+              console.log(userAddress);
+              
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          })
+        
+          }
 
     useEffect(() => {
-        getUserLocation()
+        getUserLocation();
       },[])
+
+      useEffect(()=>{
+        getuserlocalfromxy();
+      },[userAddress,userLocation])
  
+      const apiUrl = 'https://api.geoapify.com/v1/geocode/reverse';
+      const apiKey = '7a5a446135ca4bf799b0005045503d28';
+      const latitude = userLocation?.lat;
+      const longitude = userLocation?.lng;
+      const language = 'fr';
+      
+
 
     return (
-        <UserLocationContext.Provider value={{userLocation,setUserLocation}}>
+        <UserLocationContext.Provider value={{userLocation,setUserLocation,userAddress,setUserAddress}}>
             {children}
         </UserLocationContext.Provider>
     )

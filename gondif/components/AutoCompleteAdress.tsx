@@ -4,13 +4,10 @@ import { CoordinatesWraper, useCoordinatesContext } from '@/context/CoordinatesC
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { UserLocationWraper, useUserLocationContext } from '@/context/UserLocationContext';
-import { space } from 'postcss/lib/list';
 
 const MAPBOX_RETRIEVE_URL="https://api.mapbox.com/search/searchbox/v1/retrieve/"
 const MAPBOX_SESSION_TOKEN='b6844ea0-751a-478e-ac07-b155204cb99e'
 
-const OPENWEATHER_URL="https://api.openweathermap.org/data/3.0/onecall?"
-const OPENWEATHER_API_KEY='b4211427f497337b17b79bfe593ab1ca'
 
 
 function AutoCompleteAdress() {
@@ -23,40 +20,8 @@ function AutoCompleteAdress() {
 
   const {userLocation,setUserLocation} = useUserLocationContext();
 
-  const [userAddress, setUserAddress] = useState<any>(null);
+  const {userAddress, setUserAddress} = useUserLocationContext();
 
-
-
-
-  const apiUrl = 'https://api.geoapify.com/v1/geocode/reverse';
-  const apiKey = '7a5a446135ca4bf799b0005045503d28';
-  const latitude = userLocation.lat;
-  const longitude = userLocation.lng;
-  const language = 'fr';
-  
-  function getuserlocalfromxy(){
-    axios.get(apiUrl, {
-      params: {
-          lat: latitude,
-          lon: longitude,
-          lang: language,
-          apiKey: apiKey
-      }
-  })
-  .then( response => {
-      console.log(response.data);
-      setUserAddress(response.data);
-  })
-  .catch(error => {
-      console.error('Error:', error);
-  })
-
-  }
-  
-  useEffect(()=> {
-    getuserlocalfromxy();
-  
-  },[])
 
   
   useEffect(()=> {
@@ -67,7 +32,6 @@ function AutoCompleteAdress() {
     return ()=> clearTimeout(DelayedRequest)  
   }
   },[source])
-
   
 
 
@@ -82,6 +46,12 @@ function AutoCompleteAdress() {
 
 
   }
+
+  const apiUrl = 'https://api.geoapify.com/v1/geocode/reverse';
+  const apiKey = '7a5a446135ca4bf799b0005045503d28';
+  const latitude = userLocation?.lat;
+  const longitude = userLocation?.lng;
+  const language = 'fr';
 
   const onSourceClick= async(item:any)=> {
     setSource(item.name);
