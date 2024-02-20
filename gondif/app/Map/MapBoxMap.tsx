@@ -1,6 +1,6 @@
 "use client"
 
-import { UserLocationContext } from '@/context/UserLocationContext'
+import { UserLocationWraper, useUserLocationContext } from '@/context/UserLocationContext'
 import { Content } from 'next/font/google'
 import React, { useContext,useEffect, useRef, useState } from 'react'
 import { AttributionControl, Map, Marker, NavigationControl, Popup } from 'react-map-gl'
@@ -17,17 +17,7 @@ export default function MapBoxMap() {
     const mapRef=useRef<any>();
 
     const { Coordinates, setCoordinates } = useCoordinatesContext();
-    const { UserLocation,setUserLocation } = useContext(UserLocationContext)
-
-    useEffect(()=> {
-        navigator.geolocation.getCurrentPosition(function(props){
-            console.log(props);
-            setUserLocation({
-              lat:props.coords.latitude,
-              lng:props.coords.longitude
-            })
-          })
-    },[])
+    const { userLocation,setUserLocation } = useUserLocationContext();
 
     useEffect(()=> {
         if(Coordinates)
@@ -44,17 +34,18 @@ export default function MapBoxMap() {
 
 
 return (
+    <UserLocationWraper>
 <CoordinatesWraper>
 <div className='h-screen w-screen flex justify-center items-center'> 
-        {UserLocation?
+        {userLocation?
             
             <Map 
         ref={mapRef}
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOCKEN}
 
         initialViewState={{
-                longitude: UserLocation?.lng, 
-                latitude: UserLocation?.lat,
+                longitude: userLocation?.lng, 
+                latitude: userLocation?.lat,
                 zoom: 14
         }}
         style={{width: '100%', height: '100%', background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0))'}}
@@ -75,8 +66,8 @@ return (
             </Marker>
             :
             <Marker 
-            longitude={UserLocation?.lng}
-            latitude={UserLocation?.lat}
+            longitude={userLocation?.lng}
+            latitude={userLocation?.lat}
             anchor="bottom" 
             >
                 <Image src={markerIcon} width={40} alt='marker' />
@@ -92,5 +83,7 @@ return (
         </div>}
         
     </div>
-    </CoordinatesWraper>)
+    </CoordinatesWraper>
+    </UserLocationWraper>
+    )
 }

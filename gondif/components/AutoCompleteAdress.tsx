@@ -2,9 +2,15 @@
 
 import { CoordinatesWraper, useCoordinatesContext } from '@/context/CoordinatesContext';
 import React, { useContext, useEffect, useState } from 'react'
+import axios from 'axios'
+import { UserLocationWraper, useUserLocationContext } from '@/context/UserLocationContext';
 
 const MAPBOX_RETRIEVE_URL="https://api.mapbox.com/search/searchbox/v1/retrieve/"
 const MAPBOX_SESSION_TOKEN='b6844ea0-751a-478e-ac07-b155204cb99e'
+
+const OPENWEATHER_URL="https://api.openweathermap.org/data/3.0/onecall?"
+const OPENWEATHER_API_KEY='b4211427f497337b17b79bfe593ab1ca'
+
 
 function AutoCompleteAdress() {
   
@@ -14,16 +20,47 @@ function AutoCompleteAdress() {
 
   const [AdressList,setAdressList] = useState<any>(null);
 
+  const {userLocation,setUserLocation} = useUserLocationContext();
+
+  const [userAddress, setUserAddress] = useState<any>(null);
+
+
+
+
+  const apiUrl = 'https://api.geoapify.com/v1/geocode/reverse';
+  const apiKey = '7a5a446135ca4bf799b0005045503d28';
+  const latitude = userLocation.lat;
+  const longitude = userLocation.lng;
+  const language = 'fr';
+  
+  axios.get(apiUrl, {
+      params: {
+          lat: latitude,
+          lon: longitude,
+          lang: language,
+          apiKey: apiKey
+      }
+  })
+  .then( response => {
+      console.log(response.data);
+      setUserAddress(response.data);
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  })
+
   useEffect(()=> {
     if (source) {
       const DelayedRequest = setTimeout(()=>{
       getAdressList()
     },1000)
-    return ()=> clearTimeout(DelayedRequest)  //reset timeout
+    return ()=> clearTimeout(DelayedRequest)  
   }
   },[source])
 
   
+
+
 
   const getAdressList = async () => {
     const res = await fetch(`/api/search-adress?q=`+source,{
@@ -39,7 +76,7 @@ function AutoCompleteAdress() {
   const onSourceClick= async(item:any)=> {
     setSource(item.name);
     setAdressList([]);
-    const res = await fetch(MAPBOX_RETRIEVE_URL+item.mapbox_id+'?session_token=[GENERATED-UUIDv4]&access_token=pk.eyJ1Ijoid2VibW9ycGhlcnMiLCJhIjoiY2xzdHBzZml5MTBmcTJsczBvbDV4cmFtbSJ9.Kvwu1Ii4MURfcYNhZL45Bg' )
+    const res = await fetch(MAPBOX_RETRIEVE_URL+item.mapbox_id+'?session_token=[GENERATED-UUIDv4]&access_token=pk.eyJ1Ijoic2VhcmNoLW1hY2hpbmUtdXNlci0xIiwiYSI6ImNrNnJ6bDdzdzA5cnAza3F4aTVwcWxqdWEifQ.RFF7CVFKrUsZVrJsFzhRvQ' )
     const data = await res.json() 
     console.log(data)
       // Access the first feature's geometry.coordinates
@@ -60,7 +97,7 @@ function AutoCompleteAdress() {
         <label>The Car&apos;s Address</label>
         <input type='text' name='address'
          className='bg-white p-1 border w-full rounded-md outline-none '
-         value={source}
+         value={userAddress? userAddress.features[0].properties.plus_code +' | '+ userAddress.features[0].properties.formatted :source}
          onChange={(e)=>setSource(e.target.value)}></input>
 
         {AdressList?.data?.suggestions? 

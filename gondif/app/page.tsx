@@ -7,7 +7,7 @@ import * as React from "react"
 import { useEffect, useState } from "react"
 import MapBoxMap from "./Map/MapBoxMap"
 import { useSession } from "next-auth/react"
-import { UserLocationContext } from "@/context/UserLocationContext"
+import { UserLocationWraper, useUserLocationContext } from "@/context/UserLocationContext"
 import DropdownMenu from "@/components/dropDown/dropdownMenu"
 import AutoCompleteAdress from "@/components/AutoCompleteAdress"
 import { CoordinatesWraper, useCoordinatesContext } from "@/context/CoordinatesContext"
@@ -24,46 +24,26 @@ export default function Home() {
 const session = useSession();
 
 
-const [openDrawer,setopenDrawer] = useState(true);
 
-  useEffect(() => {
-    getUserLocation()
-  },[])
 
-  const [UserLocation,setUserLocation] = useState<any>();
+  const {userLocation,setUserLocation} =useUserLocationContext();
 
-  const getUserLocation=()=> { navigator.geolocation.getCurrentPosition(function(props){
-    setUserLocation({
-      lat:props.coords.latitude,
-      lng:props.coords.longitude
-    })
-  })}
-
-  const adress=fromLatLng(UserLocation?.lat, UserLocation?.lng)
-  .then(({ results }) => {
-    const { lat, lng } = results[0].geometry.location;
-    console.log(lat, lng);
-  })
-  .catch(console.error);
-
-  useEffect(() =>{
-    console.log(adress);
-  
-},[adress]);
   
   return (
       <>
-    <UserLocationContext.Provider value={{UserLocation,setUserLocation}}>
+    <UserLocationWraper>
       <CoordinatesWraper>
           <div className="relative h-screen overflow-hidden ">
 
       <MapBoxMap />
-      { UserLocation ?
-        <AddPosition />
+      { userLocation ?
+        <div>
+<AddPosition />
+        </div>
  : null}
         </div>
         </CoordinatesWraper>
-                </UserLocationContext.Provider>
+      </UserLocationWraper>
         </>
   )
 }
