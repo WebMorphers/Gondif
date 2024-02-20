@@ -14,6 +14,7 @@ import { CoordinatesWraper, useCoordinatesContext } from "@/context/CoordinatesC
 import AddPosition from "@/components/Drawers/AddPosition"
 import VehiculeType from "@/components/Drawers/VehiculeType"
 import ExtraDetails from "@/components/Drawers/ExtraDetails"
+import Payement from "@/components/Drawers/Payement"
 
 
 
@@ -46,7 +47,7 @@ const [openDrawer,setopenDrawer] = useState(true);
       <MapBoxMap />
       { UserLocation ?
  
-        <AddPosition />
+        <Payement />
  : null}
         </div>
         </CoordinatesWraper>
