@@ -4,6 +4,7 @@ import { CoordinatesWraper, useCoordinatesContext } from '@/context/CoordinatesC
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { UserLocationWraper, useUserLocationContext } from '@/context/UserLocationContext';
+import { space } from 'postcss/lib/list';
 
 const MAPBOX_RETRIEVE_URL="https://api.mapbox.com/search/searchbox/v1/retrieve/"
 const MAPBOX_SESSION_TOKEN='b6844ea0-751a-478e-ac07-b155204cb99e'
@@ -94,12 +95,16 @@ function AutoCompleteAdress() {
   return (
     
     <div>
-        <label>The Car&apos;s Address</label>
+        {userAddress? 
+        <p className='cursor-pointer' onClick={()=>setUserAddress(null)}>        
+          {userAddress.features[0].properties.plus_code +' | '+ userAddress.features[0].properties.formatted }
+        </p>
+        : 
         <input type='text' name='address'
          className='bg-white p-1 border w-full rounded-md outline-none '
-         value={userAddress? userAddress.features[0].properties.plus_code +' | '+ userAddress.features[0].properties.formatted :source}
-         onChange={(e)=>setSource(e.target.value)}></input>
-
+         value={source}
+         onChange={(e)=>setSource(e.target.value)} /> 
+  }
         {AdressList?.data?.suggestions? 
         <div className=' h-full text-black z-10 shadow-lg w-full rounded-xl'>
         {AdressList?.data?.suggestions.map((item:any,index:number)=>(
