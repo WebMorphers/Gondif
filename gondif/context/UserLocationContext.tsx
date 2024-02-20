@@ -54,6 +54,8 @@ export function UserLocationWraper({children}: Readonly<{
 
       useEffect(()=>{
         getuserlocalfromxy();
+        console.log(userAddress);
+
       },[userLocation])
  
       

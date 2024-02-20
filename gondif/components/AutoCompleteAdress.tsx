@@ -69,8 +69,8 @@ function AutoCompleteAdress() {
     
     <div>
         {userAddress? 
-        <p className='cursor-pointer' onClick={()=>setUserAddress(null)}>        
-          {userAddress.features[0].properties.plus_code +' | '+ userAddress.features[0].properties.formatted }
+        <p className='cursor-pointer text-sm leading-5 max-w-64' onClick={()=>setUserAddress(null)}>        
+          {userAddress.features[0].properties.plus_code_short  }
         </p>
         : 
         <input type='text' name='address'

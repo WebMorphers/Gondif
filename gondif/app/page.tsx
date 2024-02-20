@@ -34,11 +34,10 @@ const session = useSession();
     <UserLocationWraper>
       <CoordinatesWraper>
           <div className="relative h-screen overflow-hidden ">
-
-      <MapBoxMap />
+        <MapBoxMap />
       { userLocation ?
         <div>
-<AddPosition />
+      <AddPosition />
         </div>
  : null}
         </div>
