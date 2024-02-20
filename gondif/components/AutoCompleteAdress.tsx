@@ -34,7 +34,8 @@ function AutoCompleteAdress() {
   const longitude = userLocation.lng;
   const language = 'fr';
   
-  axios.get(apiUrl, {
+  function getuserlocalfromxy(){
+    axios.get(apiUrl, {
       params: {
           lat: latitude,
           lon: longitude,
@@ -50,6 +51,14 @@ function AutoCompleteAdress() {
       console.error('Error:', error);
   })
 
+  }
+  
+  useEffect(()=> {
+    getuserlocalfromxy();
+  
+  },[])
+
+  
   useEffect(()=> {
     if (source) {
       const DelayedRequest = setTimeout(()=>{
@@ -80,14 +89,12 @@ function AutoCompleteAdress() {
     const res = await fetch(MAPBOX_RETRIEVE_URL+item.mapbox_id+'?session_token=[GENERATED-UUIDv4]&access_token=pk.eyJ1Ijoic2VhcmNoLW1hY2hpbmUtdXNlci0xIiwiYSI6ImNrNnJ6bDdzdzA5cnAza3F4aTVwcWxqdWEifQ.RFF7CVFKrUsZVrJsFzhRvQ' )
     const data = await res.json() 
     console.log(data)
-      // Access the first feature's geometry.coordinates
-      setCoordinates( {
+       setCoordinates( {
         lng: data.features[0].geometry.coordinates[0],
         lat: data.features[0].geometry.coordinates[1],
       })
     
-      // Set the coordinates using setCoordinates
-      console.log(Coordinates)
+       console.log(Coordinates)
 
     
   }
