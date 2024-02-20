@@ -47,11 +47,7 @@ function AutoCompleteAdress() {
 
   }
 
-  const apiUrl = 'https://api.geoapify.com/v1/geocode/reverse';
-  const apiKey = '7a5a446135ca4bf799b0005045503d28';
-  const latitude = userLocation?.lat;
-  const longitude = userLocation?.lng;
-  const language = 'fr';
+  
 
   const onSourceClick= async(item:any)=> {
     setSource(item.name);

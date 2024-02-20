@@ -12,6 +12,32 @@ export function UserLocationWraper({children}: Readonly<{
 
     const [userAddress, setUserAddress] = useState<any>(null);
 
+    const apiUrl = 'https://api.geoapify.com/v1/geocode/reverse';
+    const apiKey = '7a5a446135ca4bf799b0005045503d28';
+    const latitude = userLocation?.lat;
+    const longitude = userLocation?.lng;
+    const language = 'fr';
+    function getuserlocalfromxy(){
+            
+        axios.get(apiUrl, {
+          params: {
+              lat: latitude,
+              lon: longitude,
+              lang: language,
+              apiKey: apiKey
+          }
+      })
+      .then( response => {
+          
+          setUserAddress(response.data);
+          console.log(userAddress);
+          
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      })
+    
+      }
     const getUserLocation=()=> { 
         navigator.geolocation.getCurrentPosition(function(props){
             setUserLocation({
@@ -20,27 +46,7 @@ export function UserLocationWraper({children}: Readonly<{
             })
         })}   
         
-        function getuserlocalfromxy(){
-            
-            axios.get(apiUrl, {
-              params: {
-                  lat: latitude,
-                  lon: longitude,
-                  lang: language,
-                  apiKey: apiKey
-              }
-          })
-          .then( response => {
-              
-              setUserAddress(response.data);
-              console.log(userAddress);
-              
-          })
-          .catch(error => {
-              console.error('Error:', error);
-          })
         
-          }
 
     useEffect(() => {
         getUserLocation();
@@ -48,13 +54,9 @@ export function UserLocationWraper({children}: Readonly<{
 
       useEffect(()=>{
         getuserlocalfromxy();
-      },[userAddress,userLocation])
+      },[userLocation])
  
-      const apiUrl = 'https://api.geoapify.com/v1/geocode/reverse';
-      const apiKey = '7a5a446135ca4bf799b0005045503d28';
-      const latitude = userLocation?.lat;
-      const longitude = userLocation?.lng;
-      const language = 'fr';
+      
       
 
 
