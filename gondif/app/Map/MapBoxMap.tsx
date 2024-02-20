@@ -28,11 +28,6 @@ export default function MapBoxMap() {
         })
     },[Coordinates])
 
-
-    
-
-
-
 return (
     <UserLocationWraper>
 <CoordinatesWraper>
