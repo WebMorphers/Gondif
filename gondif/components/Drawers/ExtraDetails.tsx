@@ -60,7 +60,7 @@ const ExtraDetails = () => {
                             <div >
                               <input
                               type="checkbox"
-                              className="size-5 mt-2 accent-[#9FE870] text-white"
+                              className="size-5 mt-2 accent-[#9FE870] text-white "
                               checked={selected === 0}
                               onChange={() => handleCheckboxChange(0)}
   
@@ -90,7 +90,7 @@ const ExtraDetails = () => {
                     </Card>
                     <div className="flex flex-col gap-3">
                   <Card onClick={() => handleCardClick(0)}
-                  className={` ${cardClick === 0 ? "scale-105 border-[#9FE870]" : ""}`}>
+                  className={` ${cardClick === 0 ? "scale-105 border-[#9FE870] border-2" : ""}`}>
                     <CardContent>
                       <div className="flex justify-between mt-5 alig">
                         <div className="">
