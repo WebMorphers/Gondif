@@ -97,7 +97,7 @@ function AutoCompleteAdress() {
         <label>The Car&apos;s Address</label>
         <input type='text' name='address'
          className='bg-white p-1 border w-full rounded-md outline-none '
-         value={userAddress? userAddress.features[0].properties.plus_code +' | '+ userAddress.features[0].properties.formatted :source}
+         value={userAddress? userAddress.features[0].properties.formatted :source}
          onChange={(e)=>setSource(e.target.value)}></input>
 
         {AdressList?.data?.suggestions? 
