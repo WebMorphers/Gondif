@@ -36,7 +36,6 @@
   -webkit-transform-origin: top;
   -ms-transform-origin: top;
   transform-origin: top;
-  filter: drop-shadow(0 30px 30px rgb(0 0 0 / 0.04)) drop-shadow(0 5px 1px rgb(0 0 0 / 0.1));
 }
 
 .like::after {
