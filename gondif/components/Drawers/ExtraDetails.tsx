@@ -60,7 +60,7 @@ const ExtraDetails = () => {
                             <div >
                               <input
                               type="checkbox"
-                              className="size-5 mt-2 text-[#9FE870] bg-white"
+                              className="size-5 mt-2 accent-[#9FE870] text-white"
                               checked={selected === 0}
                               onChange={() => handleCheckboxChange(0)}
   
@@ -75,7 +75,7 @@ const ExtraDetails = () => {
                             <div >
                               <input
                               type="checkbox"
-                              className="size-5 mt-2 text-[#9FE870] bg-white"
+                              className="size-5 mt-2 accent-[#9FE870]"
                               checked={selected === 1}
                               onChange={() => handleCheckboxChange(1)}
                                 />
