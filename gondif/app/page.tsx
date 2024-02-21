@@ -39,8 +39,7 @@ const session = useSession();
         <MapBoxMap />
       { userLocation ?
         <div>
-      <ExtraDetails />
-      <Payement />
+        <AddPosition />
         </div>
  : null}
         </div>
