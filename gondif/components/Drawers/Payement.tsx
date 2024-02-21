@@ -21,12 +21,12 @@ const Payement = () => {
     const [isOpen, setIsOpen] = useState(true);  
 
   return (
-    <div><Drawer open={isOpen} modal={true} onClose={() => setIsOpen(false)}>
+    <div><Drawer  open={true} onClose={() => setIsOpen(false)}>
     {!isOpen && <DrawerTrigger className="absolute h-screen w-screen opacity-0 top-0" onClick={() => setIsOpen(true)}></DrawerTrigger>}  
 
 <DrawerPortal>
 <DrawerOverlay className="fixed inset-0 bg-black/40" />
-<DrawerContent className="bg-white flex flex-col fixed bottom-0 left-0 right-0 max-h-[96%] rounded-t-[10px]">
+<DrawerContent className="bg-white fl ex flex-col fixed bottom-0 left-0 right-0 max-h-[96%] rounded-t-[10px]">
   <div className="max-w-md w-full mx-auto flex flex-col overflow-auto p-9 rounded-t-[10px]">
     <div>
      

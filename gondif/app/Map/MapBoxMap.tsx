@@ -61,7 +61,6 @@ export default function MapBoxMap() {
                                 mapStyle="mapbox://styles/mapbox/standard">
 
                                 <NavigationControl position='top-left' />
-                                <AttributionControl customAttribution="Gondif" />
 
                                 {markerCoordinates ? // Check if marker coordinates are available
                                     <Marker

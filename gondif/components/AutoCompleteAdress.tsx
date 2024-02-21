@@ -75,7 +75,7 @@ function AutoCompleteAdress() {
     <MapflytoWraper>
     <div>
         {userAddress? 
-        <p className='cursor-pointer text-sm leading-5' onClick={()=>setUserAddress(null)}>        
+        <p className='cursor-pointer text-sm leading-5 max-w-60' onClick={()=>setUserAddress(null)}>        
           {userAddress?.features[0]?.properties?.plus_code_short? userAddress?.features[0]?.properties?.plus_code_short : 'No route Name' }
         </p>
         : 
