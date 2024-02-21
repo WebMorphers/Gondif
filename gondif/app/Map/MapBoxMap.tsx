@@ -22,22 +22,25 @@ export default function MapBoxMap() {
     const { mapTriggerFlyTo, setMapTriggerFlyTo } = useMapFlyToContext();
 
     function flytocordinants(lng: any, lat: any) {
-        mapRef.current?.flyTo({
-            center: [lng, lat],
-            zoom: 14,
-            duration: 2500
-        });
-        // Update marker coordinates
-        setMarkerCoordinates({ lng, lat });
+         if (!isNaN(lng) && !isNaN(lat)) {
+            mapRef.current?.flyTo({
+                center: [lng, lat],
+                zoom: 14,
+                duration: 2500
+            });
+             setMarkerCoordinates({ lng, lat });
+        }
     }
-
     useEffect(() => {
-        flytocordinants(userLocation?.lng, userLocation?.lat);
-    }, [mapTriggerFlyTo]);
-
+        if (userLocation && !isNaN(userLocation.lng) && !isNaN(userLocation.lat)) {
+            flytocordinants(userLocation.lng, userLocation.lat);
+        }
+    }, [mapTriggerFlyTo, userLocation]);
+    
     useEffect(() => {
-        if (Coordinates)
+        if (Coordinates && !isNaN(Coordinates.lng) && !isNaN(Coordinates.lat)) {
             flytocordinants(Coordinates.lng, Coordinates.lat);
+        }
     }, [Coordinates]);
 
     return (
