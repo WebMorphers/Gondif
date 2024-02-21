@@ -18,9 +18,11 @@ function AutoCompleteAdress() {
 
   const [AdressList,setAdressList] = useState<any>(null);
 
-  const {userLocation,setUserLocation} = useUserLocationContext();
-
   const {userAddress, setUserAddress} = useUserLocationContext();
+
+  const [sourceChange,setSourceChange] = useState<any>(true);
+
+
 
 
   
@@ -76,16 +78,16 @@ function AutoCompleteAdress() {
         <input type='text' name='address'
          className='bg-white p-1 border w-full rounded-md outline-none '
          value={source}
-         onChange={(e)=>setSource(e.target.value)} /> 
+         onChange={(e)=>{setSource(e.target.value);setSourceChange(true)}} /> 
   }
-        {AdressList?.data?.suggestions? 
+        {AdressList?.data?.suggestions&&sourceChange?
         <div className=' h-full text-black z-10 shadow-lg w-full rounded-xl'>
         {AdressList?.data?.suggestions.map((item:any,index:number)=>(
           <div           
           key={index}
           className='bg-gray-100 hover:bg-gray-200 p-1 px-2 cursor-pointer'
           onClick={()=>{
-            onSourceClick(item)
+            onSourceClick(item);setSourceChange(false)
           }}          >
           <h2>{item.name}</h2>
             <span className='font-light text-xs'>{item.full_address}</span>
