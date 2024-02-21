@@ -26,13 +26,19 @@ import {
 } from "@/components/ui/drawer";
 import Image from "next/image";
 
-const VehiculeType = () => {
+interface VehiculeTypeProps {
+  onGoBack: () => void;
+  onNext: () => void;  
+}
+
+const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [isClicked, setIsClicked] = useState(false);
   const [isClicked2, setIsClicked2] = useState(false);
   const [isClicked3, setIsClicked3] = useState(false);
 
   const handleCardClick = () => {
+    
     setIsClicked(true);
     setIsClicked2(false);
     setIsClicked3(false);
@@ -102,8 +108,15 @@ const VehiculeType = () => {
                   </Card>
                 </div>
               </div>
-              <DrawerFooter>
-                <Button className="bg-[#9FE870] text-[#163300] ">Confirm Vehicle</Button>
+              <DrawerFooter className="flex flex-row justify-center items-center">
+                <button         onClick={onGoBack}
+ className="cursor-pointer duration-200 hover:scale-110 active:scale-100" title="Go Back">
+  <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24" className="stroke-[#163300]">
+    <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" d="M11 6L5 12M5 12L11 18M5 12H19"></path>
+  </svg>
+</button>
+<Button className="bg-[#9FE870] text-[#163300] w-full" onClick={onNext}>Confirm Vehicle</Button>
+
               </DrawerFooter>
             </div>
           </DrawerContent>

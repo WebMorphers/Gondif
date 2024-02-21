@@ -24,6 +24,23 @@ import { MapflytoWraper } from "@/context/Mapflytocontext"
 export default function Home() {
 const session = useSession();
 
+const [isAddPositionOpen, setIsAddPositionOpen] = useState(true);
+  const [isVehiculeTypeOpen, setIsVehiculeTypeOpen] = useState(false);
+  const [isExtraDetailsOpen, setIsExtraDetailsOpen] = useState(false); // State for ExtraDetails
+
+  
+  const handleConfirmPosition = () => {
+    setIsAddPositionOpen(false);
+    setIsVehiculeTypeOpen(true);
+  };
+  const handleGoBackToAddPosition = () => {
+    setIsVehiculeTypeOpen(false);
+    setIsAddPositionOpen(true);
+  };
+  const handleConfirmVehicle = () => {
+    setIsVehiculeTypeOpen(false);
+    setIsExtraDetailsOpen(true);  
+  };
 
 
 
@@ -39,7 +56,17 @@ const session = useSession();
         <MapBoxMap />
       { userLocation ?
         <div>
-        <AddPosition />
+        {isAddPositionOpen && (
+        <AddPosition onClose={handleConfirmPosition} />
+      )}
+      {isVehiculeTypeOpen && (
+        <VehiculeType onGoBack={handleGoBackToAddPosition} onNext={handleConfirmVehicle} />
+      )}
+      {isExtraDetailsOpen && ( // Render ExtraDetails when isExtraDetailsOpen is true
+        <ExtraDetails />
+      )}
+         
+
         </div>
  : null}
         </div>

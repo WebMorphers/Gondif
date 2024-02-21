@@ -21,7 +21,14 @@ import { MapflytoWraper, useMapFlyToContext } from "@/context/Mapflytocontext";
 
 
 
-const AddPosition = () => {
+interface AddPositionProps {
+  onClose: () => void;
+}
+
+const AddPosition: React.FC<AddPositionProps> = ({ onClose }) => {
+  const handleConfirmPosition = () => {
+    onClose();
+  };
 
 
     const [isOpen, setIsOpen] = useState(true);  
@@ -68,7 +75,7 @@ const AddPosition = () => {
   return (
     <MapflytoWraper>
     <div>
-      <Drawer open={isOpen} modal={false} onClose={() => setIsOpen(false)} >
+    <Drawer open={isOpen} modal={false} onClose={() => setIsOpen(false)} >
       {!isOpen && <DrawerTrigger className=" absolute bottom-20 left-0 right-0 mx-auto w-12 h-12 rounded-full bg-opacity-750 border-white  bg-[#9FE870]" onClick={() => setIsOpen(true)}>
       <svg className=" rounded-full p-2 " viewBox="0 0 24 24" width={50} fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z" fill="#ffffff"></path> </g></svg>
               </DrawerTrigger>}  
@@ -96,8 +103,12 @@ const AddPosition = () => {
       
     </div>
     <DrawerFooter>
-      <Button className="bg-[#9FE870] text-[#163300]" >Confirm Position</Button>
-    </DrawerFooter>
+    <Button
+          className="bg-[#9FE870] text-[#163300]"
+          onClick={handleConfirmPosition}
+        >
+          Confirm Position
+        </Button>    </DrawerFooter>
   </div>
   </DrawerContent>
   </DrawerPortal>
