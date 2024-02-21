@@ -9,6 +9,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import Image from 'next/image'
 import LocalisationIcon from '@/public/location-icon.png'
 import {  CoordinatesWraper, useCoordinatesContext } from '@/context/CoordinatesContext'
+import { MapflytoWraper, useMapFlyToContext } from '@/context/Mapflytocontext'
 
 
 
@@ -18,6 +19,7 @@ export default function MapBoxMap() {
 
     const { Coordinates, setCoordinates } = useCoordinatesContext();
     const { userLocation,setUserLocation } = useUserLocationContext();
+    const {mapTriggerFlyTo,setMapTriggerFlyTo} = useMapFlyToContext()
 
     function flytocordinants(lng: any,lat: any){
         mapRef.current?.flyTo({
@@ -27,11 +29,16 @@ export default function MapBoxMap() {
         })
     }
     useEffect(()=> {
+        flytocordinants(userLocation.lng,userLocation.lat)
+     },[mapTriggerFlyTo])
+
+    useEffect(()=> {
         if(Coordinates)
         flytocordinants(Coordinates.lng,Coordinates.lat)
     },[Coordinates])
 
 return (
+    <MapflytoWraper>
     <UserLocationWraper>
 <CoordinatesWraper>
 <div className='h-screen w-screen flex justify-center items-center'> 
@@ -83,5 +90,6 @@ return (
     </div>
     </CoordinatesWraper>
     </UserLocationWraper>
+    </MapflytoWraper>
     )
 }
