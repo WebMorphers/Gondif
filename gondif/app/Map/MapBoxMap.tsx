@@ -19,13 +19,16 @@ export default function MapBoxMap() {
     const { Coordinates, setCoordinates } = useCoordinatesContext();
     const { userLocation,setUserLocation } = useUserLocationContext();
 
-    useEffect(()=> {
-        if(Coordinates)
+    function flytocordinants(lng: any,lat: any){
         mapRef.current?.flyTo({
-            center: [Coordinates.lng,Coordinates.lat],
+            center: [lng,lat],
             zoom: 14,
             duration:2500
         })
+    }
+    useEffect(()=> {
+        if(Coordinates)
+        flytocordinants(Coordinates.lng,Coordinates.lat)
     },[Coordinates])
 
 return (
