@@ -67,6 +67,8 @@ const handleReturnToVehiculeType = () => {
       {isExtraDetailsOpen && (
         <ExtraDetails onReturn={handleReturnToVehiculeType} />
       )}
+        <Payement />
+
 
         </div>
  : null}
