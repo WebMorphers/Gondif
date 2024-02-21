@@ -1,9 +1,13 @@
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Small from '../../public/Small Vehicle.png';
 import Medium from '../../public/Medium Vehicle.png';
 import Large from '../../public/Large Vehicle.png';
+import { QuerySnapshot, collection, getDocs,query,onSnapshot } from "firebase/firestore"; 
+import {DB} from '@/app/firebase'
+
+
 
 import {
   Card,
@@ -33,26 +37,59 @@ interface VehiculeTypeProps {
 
 const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
   const [isOpen, setIsOpen] = useState(true);
-  const [isClicked, setIsClicked] = useState(false);
+  const [isClicked, setIsClicked] = useState<number | null>(null)
   const [isClicked2, setIsClicked2] = useState(false);
   const [isClicked3, setIsClicked3] = useState(false);
+  const [vehiculeType,setVehiculeType] =useState<any>([
+    {
+      id:1,
+      name:"small vehicule",
+      short_description:"Sudans and SUVs.",
+      description_plus:"vehicles regular people use.",
+      min_price:10,
+      max_price:90,
+      average_time:"25 mins"
+    },
+    {
+      id:2,
+      name:"Medium vehicle",
+      short_description:"Large cars like sedans or vans.",
+      description_plus:"Family and business vehicles.",
+      min_price:30,
+      max_price:110,
+      image:'',
+      average_time:"45 mins"
 
-  const handleCardClick = () => {
-    
-    setIsClicked(true);
-    setIsClicked2(false);
-    setIsClicked3(false);
-   };
-   const handleCardClick2 = () => {
-    setIsClicked(false);
-    setIsClicked2(true);
-    setIsClicked3(false);
-   };
-   const handleCardClick3 = () => {
-    setIsClicked(false);
-    setIsClicked2(false);
-    setIsClicked3(true);
-   };
+    },
+    {
+      id:3,
+      name:"Large vehicle",
+      short_description:"Trucks and Buses.",
+      description_plus:"vehicles of big trasports.",
+      min_price:60,
+      max_price:190,
+      image:'',
+      average_time:"1h 20 mins"
+
+    }
+  ])
+
+  useEffect(()=>{
+    const q= query(collection(DB,'Vehicules'))
+    const unsubscribe = onSnapshot(q,(QuerySnapshot)=>{
+      let VehiculesArr: { id: string; }[] = []
+
+      QuerySnapshot.forEach((doc)=>{
+        VehiculesArr.push({...doc.data(), id: doc.id})
+      });
+      setVehiculeType(VehiculesArr)
+    }) 
+  },[])
+
+
+  const handleCardClick = (index: number) => {
+    setIsClicked(isClicked === index ? null : index);
+  };
 
   return (
     <div>
@@ -67,45 +104,21 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
               </DrawerHeader>
               <div className="">
                 <div className="flex items-center flex-col justify-between gap-3 w-full">
-                  <Card onClick={handleCardClick} className={isClicked ? "scale-105 w-full border-2 border-[#9FE870]" : "grayscale w-full"} > 
-                    <div className="shadow-md rounded-md flex flex-row p-4  gap-3 items-center w-full">
-                        <img src={Small.src} width={80} />
-                      <div className="flex flex-col flex-1 gap-1">
-                        <h1 style={{ color: isClicked ? '#9FE870' : '#163300' }} className="font-bold">Small vehicle</h1>
-                        <p className="text-[#8996A2] text-xs">Sudans and SUVs. <br />  vehicles regular people use.</p>
-                      </div>
-                      <div className="flex flex-col  gap-1 items-center">
-                        <h1 className="text-[#163300] text-[13px] font-bold">MAD 10 - 90</h1>
-                        <p className="text-[#8996A2] text-[11px] ">25 mins</p>
-                      </div>
-                    </div> 
-                  </Card>
-                  <Card onClick={handleCardClick2} className={isClicked2 ? "scale-105 w-full border-2 border-[#9FE870]" : "grayscale w-full"}>
-                    <div className="shadow-md rounded-md flex flex- p-4 justify-between gap-3 items-center">
-                        <img src={Medium.src}  width={80} />
-                      <div className="flex flex-col flex-1 gap-1">
-                        <h1 style={{ color: isClicked2 ? '#9FE870' : '#163300' }} className="font-bold">Medium vehicle</h1>
-                        <p className="text-[#8996A2] text-xs">Vans and Light trucks.<br />Family and business vehicles.</p>
-                      </div>
-                      <div className="flex flex-col  gap-1 items-center">
-                        <h1 className="text-[#163300] text-[13px] font-bold">MAD 30 - 110</h1>
-                        <p className="text-[#8996A2] text-[11px] ">25 mins</p>
-                      </div>
-                    </div> 
-                  </Card>
-                  <Card onClick={handleCardClick3} className={isClicked3 ? "scale-105 w-full border-2 border-[#9FE870]" : "grayscale w-full"}>
-                    <div className="shadow-md rounded-md flex flex-row p-4 gap-6 items-center">
-                      <img src={Large.src} width={80} />
-                      <div className="flex flex-col flex-1 gap-1">
-                        <h1 style={{ color: isClicked3 ? '#9FE870' : '#163300' }} className="font-bold">Large vehicle</h1>
-                        <p className="text-[#8996A2] text-xs">Trucks and Buses. <br />vehicles of big trasports.</p>
-                      </div>
-                      <div className="flex flex-col  gap-1 items-center">
-                        <h1 className="text-[#163300] text-[13px] font-bold">MAD 60 - 190</h1>
-                        <p className="text-[#8996A2] text-[11px] ">1h 20 mins</p>
-                      </div>
-                    </div> 
-                  </Card>
+                  {vehiculeType.map((vehicule:any,id:number)=>(
+                    <Card onClick={()=>handleCardClick(vehicule.id)} className={` ${isClicked === vehicule.id ? "scale-105 border-[#9FE870] border-2" : ""}`}>
+                      <div className="shadow-md rounded-md flex flex-row p-4  gap-3 items-center w-full">
+                        <img src={vehicule.image} width={80} />
+                        <div className="flex flex-col flex-1 gap-1">
+                          <h1 style={{ color: isClicked === vehicule.id ? '#9FE870' : '#163300' }} className="font-bold">{vehicule.name}</h1>
+                          <p className="text-[#8996A2] text-xs">{vehicule.short_description} <br />  {vehicule.description_plus}</p>
+                        </div>
+                        <div className="flex flex-col  gap-1 items-center">
+                          <h1 className="text-[#163300] text-[13px] font-bold">MAD {vehicule.min_price} - {vehicule.max_price}</h1>
+                          <p className="text-[#8996A2] text-[11px] ">{vehicule.average_time}</p>
+                        </div>
+                      </div> 
+                    </Card>
+                  ))}
                 </div>
               </div>
               <DrawerFooter className="flex flex-row justify-center items-center">
