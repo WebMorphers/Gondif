@@ -15,14 +15,10 @@ import AddPosition from "@/components/Drawers/AddPosition"
 import VehiculeType from "@/components/Drawers/VehiculeType"
 import ExtraDetails from "@/components/Drawers/ExtraDetails"
 import Payement from "@/components/Drawers/Payement"
-import {
-  fromLatLng,
-} from "react-geocode";
 import { MapflytoWraper } from "@/context/Mapflytocontext"
 
 
 export default function Home() {
-const session = useSession();
 
 const [isAddPositionOpen, setIsAddPositionOpen] = useState(true);
 const [isVehiculeTypeOpen, setIsVehiculeTypeOpen] = useState(false);
