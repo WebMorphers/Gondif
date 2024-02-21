@@ -1,8 +1,12 @@
 import React from 'react'
  import Image from 'next/image'
 import cash from '@/public/cash.png'
-import { Tooltip } from 'react-tooltip';
+import discount from '@/public/discount.png'
+ import { Tooltip } from 'react-tooltip';
 import  {Button} from '@/components/ui/button'
+import { Input } from "@/components/ui/input"
+ 
+
 import {
   Drawer,
   DrawerClose,
@@ -19,7 +23,7 @@ import {
  
 const Payement = () => {
     const [isOpen, setIsOpen] = useState(true);  
-
+    
   return (
     <div><Drawer  open={true} onClose={() => setIsOpen(false)}>
     {!isOpen && <DrawerTrigger className="absolute h-screen w-screen opacity-0 top-0" onClick={() => setIsOpen(true)}></DrawerTrigger>}  
@@ -27,15 +31,15 @@ const Payement = () => {
 <DrawerPortal>
 <DrawerOverlay className="fixed inset-0 bg-black/40" />
 <DrawerContent className="bg-white fl ex flex-col fixed bottom-0 left-0 right-0 max-h-[96%] rounded-t-[10px]">
-  <div className="max-w-md w-full mx-auto flex flex-col overflow-auto p-9 rounded-t-[10px]">
-    <div>
-     
+  <div className="max-w-md w-full mx-auto flex flex-row justify-around overflow-auto p-9 rounded-t-[10px]">
+    <div className='flex items-center flex-row gap-3  justify-center '>
+     <div>
     <Tooltip 
     content= "©  Add a card for hassle-free payment."  
     place="bottom-start"
     anchorSelect="#my-tooltip-anchor"
-     defaultIsOpen
-    isOpen
+     
+     
      style={{ backgroundColor: "#163300", color: "#fff" ,borderRadius:"7px",fontWeight:"500"}}
         
 
@@ -46,8 +50,22 @@ const Payement = () => {
       height={20}
       alt="cash"
     />
-        
+     </div>
+      
+      
+
     </div>
+    <div className='flex items-center flex-row gap-3  justify-center '>
+     
+           <Image
+        src={discount}
+       width={20}
+       height={20}
+       alt="cash"
+     />
+          <Input type="text" className='text-xs w-24' placeholder="DISCOUNTS" />
+
+     </div>
   
 </div>
 <DrawerFooter>
