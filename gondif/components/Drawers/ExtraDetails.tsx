@@ -23,8 +23,12 @@ import {
 } from "@/components/ui/drawer"
 import { useState } from "react"
  
-const ExtraDetails = () => {
-  const [isOpen, setIsOpen] = useState(true);  
+interface ExtraDetailsProps {
+  onReturn: () => void; 
+}
+
+const ExtraDetails: React.FC<ExtraDetailsProps> = ({ onReturn }) => { 
+   const [isOpen, setIsOpen] = useState(true);  
   const [selected, setSelected] = useState<any>(null)
   const [cardClick, setCardClick] = useState<number | null>(null)
 
@@ -124,8 +128,14 @@ const ExtraDetails = () => {
                   </div>
 
 
-                <DrawerFooter>
-                  <Button className="bg-[#9FE870] text-[#163300] ">Confirm</Button>
+                <DrawerFooter className="flex flex-row justify-center items-center">
+                <button onClick={onReturn}
+ className="cursor-pointer duration-200 hover:scale-110 active:scale-100 w-f" title="Go Back">
+  <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24" className="stroke-[#163300]">
+    <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" d="M11 6L5 12M5 12L11 18M5 12H19"></path>
+  </svg>
+</button>
+                  <Button className="bg-[#9FE870] text-[#163300] w-full ">Confirm</Button>
                 </DrawerFooter>
               </div>
             </DrawerContent>
