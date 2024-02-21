@@ -18,6 +18,7 @@ import Payement from "@/components/Drawers/Payement"
 import {
   fromLatLng,
 } from "react-geocode";
+import { MapflytoWraper } from "@/context/Mapflytocontext"
 
 
 export default function Home() {
@@ -31,6 +32,7 @@ const session = useSession();
   
   return (
       <>
+      <MapflytoWraper>
     <UserLocationWraper>
       <CoordinatesWraper>
           <div className="relative h-screen overflow-hidden ">
@@ -43,6 +45,7 @@ const session = useSession();
         </div>
         </CoordinatesWraper>
       </UserLocationWraper>
+      </MapflytoWraper>
         </>
   )
 }

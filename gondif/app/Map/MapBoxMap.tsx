@@ -19,7 +19,7 @@ export default function MapBoxMap() {
 
     const { Coordinates, setCoordinates } = useCoordinatesContext();
     const { userLocation,setUserLocation } = useUserLocationContext();
-    const {mapTriggerFlyTo,setMapTriggerFlyTo} = useMapFlyToContext()
+    const { mapTriggerFlyTo,setMapTriggerFlyTo } = useMapFlyToContext()
 
     function flytocordinants(lng: any,lat: any){
         mapRef.current?.flyTo({
@@ -29,7 +29,7 @@ export default function MapBoxMap() {
         })
     }
     useEffect(()=> {
-        flytocordinants(userLocation.lng,userLocation.lat)
+        flytocordinants(userLocation?.lng,userLocation?.lat)
      },[mapTriggerFlyTo])
 
     useEffect(()=> {

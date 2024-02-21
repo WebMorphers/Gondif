@@ -8,7 +8,6 @@ export function MapflytoWraper({children}: Readonly<{
   }>) {
 
     const [mapTriggerFlyTo,setMapTriggerFlyTo] = useState<any>(true)
-
     return (
         <MapFlyToContext.Provider value={{mapTriggerFlyTo,setMapTriggerFlyTo}}>
             {children}
