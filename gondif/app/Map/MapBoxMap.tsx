@@ -20,6 +20,7 @@ export default function MapBoxMap() {
     const { Coordinates, setCoordinates } = useCoordinatesContext();
     const { userLocation,setUserLocation } = useUserLocationContext();
     const { mapTriggerFlyTo,setMapTriggerFlyTo } = useMapFlyToContext()
+    const {currentLocation,setCurrentLocation} = useMapFlyToContext()
 
     function flytocordinants(lng: any,lat: any){
         mapRef.current?.flyTo({
@@ -37,6 +38,9 @@ export default function MapBoxMap() {
         flytocordinants(Coordinates.lng,Coordinates.lat)
     },[Coordinates])
 
+    useEffect(()=> {
+        console.log(currentLocation)
+    })
 return (
     <MapflytoWraper>
     <UserLocationWraper>
@@ -61,7 +65,8 @@ return (
 
             <AttributionControl customAttribution="Gondif" />
 
-            {Coordinates?
+            {Coordinates&&currentLocation==="search"?
+
             <Marker 
             longitude={Coordinates?.lng}
             latitude={Coordinates?.lat}

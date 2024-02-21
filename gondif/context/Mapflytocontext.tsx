@@ -7,9 +7,10 @@ export function MapflytoWraper({children}: Readonly<{
     children: React.ReactNode;
   }>) {
 
-    const [mapTriggerFlyTo,setMapTriggerFlyTo] = useState<any>(true)
+    const [mapTriggerFlyTo,setMapTriggerFlyTo] = useState<any>(true);
+    const [currentLocation,setCurrentLocation] = useState<"location"|"search"|null>(null);
     return (
-        <MapFlyToContext.Provider value={{mapTriggerFlyTo,setMapTriggerFlyTo}}>
+        <MapFlyToContext.Provider value={{mapTriggerFlyTo,setMapTriggerFlyTo,currentLocation,setCurrentLocation}}>
             {children}
         </MapFlyToContext.Provider>
     )

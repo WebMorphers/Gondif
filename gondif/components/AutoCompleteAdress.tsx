@@ -4,6 +4,7 @@ import { CoordinatesWraper, useCoordinatesContext } from '@/context/CoordinatesC
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { UserLocationWraper, useUserLocationContext } from '@/context/UserLocationContext';
+import { MapflytoWraper, useMapFlyToContext } from '@/context/Mapflytocontext';
 
 const MAPBOX_RETRIEVE_URL="https://api.mapbox.com/search/searchbox/v1/retrieve/"
 const MAPBOX_SESSION_TOKEN='b6844ea0-751a-478e-ac07-b155204cb99e'
@@ -21,6 +22,9 @@ function AutoCompleteAdress() {
   const {userAddress, setUserAddress} = useUserLocationContext();
 
   const [sourceChange,setSourceChange] = useState<any>(true);
+
+  const {currentLocation,setCurrentLocation} = useMapFlyToContext();
+
 
 
 
@@ -68,10 +72,10 @@ function AutoCompleteAdress() {
   }
 
   return (
-    
+    <MapflytoWraper>
     <div>
         {userAddress? 
-        <p className='cursor-pointer text-sm leading-5 max-w-64' onClick={()=>setUserAddress(null)}>        
+        <p className='cursor-pointer text-sm leading-5' onClick={()=>setUserAddress(null)}>        
           {userAddress?.features[0]?.properties?.plus_code_short? userAddress?.features[0]?.properties?.plus_code_short : 'No route Name' }
         </p>
         : 
@@ -87,7 +91,10 @@ function AutoCompleteAdress() {
           key={index}
           className='bg-gray-100 hover:bg-gray-200 p-1 px-2 cursor-pointer'
           onClick={()=>{
-            onSourceClick(item);setSourceChange(false)
+            onSourceClick(item);
+            setSourceChange(false);
+            setCurrentLocation("search");
+            console.log(currentLocation);
           }}          >
           <h2>{item.name}</h2>
             <span className='font-light text-xs'>{item.full_address}</span>
@@ -96,6 +103,7 @@ function AutoCompleteAdress() {
           ))}
         </div>:null}
     </div>
+    </MapflytoWraper>
   )
 }
 
