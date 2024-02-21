@@ -65,7 +65,7 @@ const ExtraDetails: React.FC<ExtraDetailsProps> = ({ onReturn }) => {
                               <input
                               type="checkbox"
                               className="size-5 mt-2 accent-[#9FE870] text-white "
-                              checked={selected === 0}
+                              checked={selected?selected === 0: true}
                               onChange={() => handleCheckboxChange(0)}
   
                                 />
