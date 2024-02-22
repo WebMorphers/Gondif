@@ -27,7 +27,10 @@ function AutoCompleteAdress() {
 
 
 
+  useEffect(()=> {
+    console.log(userAddress);
 
+  })
 
   
   useEffect(()=> {
@@ -71,11 +74,15 @@ function AutoCompleteAdress() {
   }
 
   return (
+    <UserLocationWraper>
     <MapflytoWraper>
     <div>
         {userAddress? 
-        <p className='cursor-pointer text-sm leading-5 max-w-60' onClick={()=>setUserAddress(null)}>        
-          {userAddress?.features[0]?.properties?.plus_code_short? userAddress?.features[0]?.properties?.plus_code_short : 'No route Name' }
+        <p className='cursor-pointer text-sm leading-5 max-w-60' onClick={()=>{setUserAddress(null); setSourceChange(false);}}>        
+          {userAddress?.features[0]?.properties?.road?
+           userAddress?.features[0]?.properties?.plus_code +" | " + userAddress?.features[0]?.properties?.road
+           :
+           userAddress?.features[0]?.properties?.plus_code + " | No Road Name" }
         </p>
         : 
         <input type='text' name='address'
@@ -92,7 +99,6 @@ function AutoCompleteAdress() {
           onClick={()=>{
             onSourceClick(item);
             setSourceChange(false);
-            setCurrentLocation("search");
             console.log(currentLocation);
           }}          >
           <h2>{item.name}</h2>
@@ -103,6 +109,7 @@ function AutoCompleteAdress() {
         </div>:null}
     </div>
     </MapflytoWraper>
+    </UserLocationWraper>
   )
 }
 
