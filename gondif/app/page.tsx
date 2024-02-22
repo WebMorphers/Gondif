@@ -16,6 +16,7 @@ import VehiculeType from "@/components/Drawers/VehiculeType"
 import ExtraDetails from "@/components/Drawers/ExtraDetails"
 import Payement from "@/components/Drawers/Payement"
 import { MapflytoWraper } from "@/context/Mapflytocontext"
+import { VehiculeTypeWraper } from "@/context/VehiculeType"
 
 
 export default function Home() {
@@ -51,6 +52,7 @@ const handleReturnToVehiculeType = () => {
   
   return (
       <>
+      <VehiculeTypeWraper>
       <MapflytoWraper>
     <UserLocationWraper>
       <CoordinatesWraper>
@@ -76,6 +78,7 @@ const handleReturnToVehiculeType = () => {
         </CoordinatesWraper>
       </UserLocationWraper>
       </MapflytoWraper>
+      </VehiculeTypeWraper>
         </>
   )
 }

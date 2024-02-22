@@ -33,6 +33,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import Image from "next/image";
+import { VehiculeTypeWraper, useVehiculeContext } from "@/context/VehiculeType";
 
 interface VehiculeTypeProps {
   onGoBack: () => void;
@@ -42,7 +43,9 @@ interface VehiculeTypeProps {
 const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [isClicked, setIsClicked] = useState<number | null>(null)
-  const [vehiculeType,setVehiculeType] =useState<any>(null)
+  const {vehiculeType,setVehiculeType} =useVehiculeContext()
+  const {selectedVehiculeType,setSelectedVehiculeType} = useVehiculeContext()
+
 
   useEffect(()=>{
     const q= query(collection(DB,'Vehicules'))
@@ -63,6 +66,8 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
 
 
   return (
+    <VehiculeTypeWraper>
+
     <div>
       <Drawer open={isOpen} modal={true} onClose={() => setIsOpen(false)}>
         {!isOpen && <DrawerTrigger className="absolute h-screen w-screen opacity-0 top-0" onClick={() => setIsOpen(true)}></DrawerTrigger>}  
@@ -78,7 +83,13 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
                 <div className="flex items-center flex-col justify-between gap-3 w-full">
                   
                 {vehiculeType.map((vehicule:any,id:number)=>(
-  <Card key={vehicule.id} onClick={()=>handleCardClick(vehicule.id)} className={` ${isClicked === vehicule.id ? "scale-105 border-[#9FE870] border-2 w-full" : "w-full"}`}>
+  <Card 
+  key={vehicule.id} 
+  onClick={()=>{
+    handleCardClick(vehicule.id);
+    setSelectedVehiculeType(vehicule);
+    }}
+  className={` ${isClicked === vehicule.id ? "scale-105 border-[#9FE870] border-2 w-full" : "w-full"}`}>
     <div className="shadow-md rounded-md flex flex-row p-4  gap-3 items-center w-full">
       <Image src={vehicule.image} width={80} height={80} alt="Vehicle Image" />
       <div className="flex flex-col flex-1 gap-1">
@@ -157,6 +168,8 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
         </DrawerPortal>
       </Drawer>
     </div>
+        </VehiculeTypeWraper>
+
   );
 };
 

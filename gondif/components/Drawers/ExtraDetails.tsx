@@ -22,6 +22,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import { useState } from "react"
+import { useVehiculeContext } from "@/context/VehiculeType"
  
 interface ExtraDetailsProps {
   onReturn: () => void; 
@@ -31,6 +32,7 @@ const ExtraDetails: React.FC<ExtraDetailsProps> = ({ onReturn }) => {
    const [isOpen, setIsOpen] = useState(true);  
   const [selected, setSelected] = useState<any>(null)
   const [cardClick, setCardClick] = useState<number | null>(null)
+  const {selectedVehiculeType,setSelectedVehiculeType} = useVehiculeContext()
 
   const handleCheckboxChange = (index:any) => {
     if (selected === index) {
@@ -72,7 +74,7 @@ const ExtraDetails: React.FC<ExtraDetailsProps> = ({ onReturn }) => {
                             </div>
                             <div>
                             <CardTitle>Exterior</CardTitle>
-                            <CardDescription className="text-xs mt-1">Sudans and SUVs. <br />vehicles regular people use.</CardDescription>
+                            <CardDescription className="text-xs mt-1">{selectedVehiculeType.short_description} <br />{selectedVehiculeType.description_plus}</CardDescription>
                             </div>
                           </div>
                           <div className="flex gap-5">
@@ -86,7 +88,7 @@ const ExtraDetails: React.FC<ExtraDetailsProps> = ({ onReturn }) => {
                             </div>
                             <div>
                             <CardTitle>Interior</CardTitle>
-                            <CardDescription className="text-xs mt-1">Sudans and SUVs. <br />vehicles regular people use.</CardDescription>
+                            <CardDescription className="text-xs mt-1">{selectedVehiculeType.short_description} <br />{selectedVehiculeType.description_plus}</CardDescription>
                             </div>
                           </div>
                         </div>
@@ -99,7 +101,7 @@ const ExtraDetails: React.FC<ExtraDetailsProps> = ({ onReturn }) => {
                       <div className="flex justify-between mt-5 alig">
                         <div className="">
                           <CardTitle className="font-bold">Water</CardTitle>
-                          <CardDescription className="mt-1 leading-4">Sudans and SUVs. <br />vehicles regular people use.</CardDescription>
+                          <CardDescription className="mt-1 leading-4">{selectedVehiculeType.short_description} <br />{selectedVehiculeType.description_plus}</CardDescription>
                         </div>
                         <div className="flex flex-col items-center"> 
                          <CardTitle>+ 10 MAD</CardTitle>
@@ -114,7 +116,7 @@ const ExtraDetails: React.FC<ExtraDetailsProps> = ({ onReturn }) => {
                       <div className="flex justify-between mt-5 alig">
                         <div className="">
                           <CardTitle className="font-bold">Without Water</CardTitle>
-                          <CardDescription className=" mt-1 leading-4">Vans and Light trucks.<br />Family and business vehicles.</CardDescription>
+                          <CardDescription className=" mt-1 leading-4">{selectedVehiculeType.short_description} <br />{selectedVehiculeType.description_plus}</CardDescription>
                         </div>
                         <div className="flex flex-col items-center"> 
                          <CardTitle>+ 0 MAD</CardTitle>
