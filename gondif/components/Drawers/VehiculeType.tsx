@@ -6,6 +6,11 @@ import Medium from '../../public/Medium Vehicle.png';
 import Large from '../../public/Large Vehicle.png';
 import { QuerySnapshot, collection, getDocs,query,onSnapshot } from "firebase/firestore"; 
 import {DB} from '@/app/firebase'
+import { Skeleton } from "@/components/ui/skeleton"
+import ContentLoader from "react-content-loader"
+
+
+
 
 
 
@@ -38,41 +43,7 @@ interface VehiculeTypeProps {
 const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [isClicked, setIsClicked] = useState<number | null>(null)
-  const [isClicked2, setIsClicked2] = useState(false);
-  const [isClicked3, setIsClicked3] = useState(false);
-  const [vehiculeType,setVehiculeType] =useState<any>([
-    {
-      id:1,
-      name:"small vehicule",
-      short_description:"Sudans and SUVs.",
-      description_plus:"vehicles regular people use.",
-      min_price:10,
-      max_price:90,
-      average_time:"25 mins"
-    },
-    {
-      id:2,
-      name:"Medium vehicle",
-      short_description:"Large cars like sedans or vans.",
-      description_plus:"Family and business vehicles.",
-      min_price:30,
-      max_price:110,
-      image:'',
-      average_time:"45 mins"
-
-    },
-    {
-      id:3,
-      name:"Large vehicle",
-      short_description:"Trucks and Buses.",
-      description_plus:"vehicles of big trasports.",
-      min_price:60,
-      max_price:190,
-      image:'',
-      average_time:"1h 20 mins"
-
-    }
-  ])
+  const [vehiculeType,setVehiculeType] =useState<any>(null)
 
   useEffect(()=>{
     const q= query(collection(DB,'Vehicules'))
@@ -91,6 +62,7 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
     setIsClicked(isClicked === index ? null : index);
   };
 
+
   return (
     <div>
       <Drawer open={isOpen} modal={true} onClose={() => setIsOpen(false)}>
@@ -103,7 +75,9 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
                 <DrawerTitle>Vehicle type</DrawerTitle>
               </DrawerHeader>
               <div className="">
+                {vehiculeType?
                 <div className="flex items-center flex-col justify-between gap-3 w-full">
+                  
                 {vehiculeType.map((vehicule:any,id:number)=>(
   <Card key={vehicule.id} onClick={()=>handleCardClick(vehicule.id)} className={` ${isClicked === vehicule.id ? "scale-105 border-[#9FE870] border-2 w-full" : "w-full"}`}>
     <div className="shadow-md rounded-md flex flex-row p-4  gap-3 items-center w-full">
@@ -121,6 +95,45 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
 ))}
 
                 </div>
+                :    
+                <div className="flex items-center flex-col justify-between gap-3 w-full">
+                  <div className="shadow-md rounded-md flex flex-row p-4 h-20 gap-3 items-center w-full">
+                    <Skeleton className="w-16 h-16" />
+                    <div className="flex flex-col flex-1 gap-1">
+                      <Skeleton className="h-3 w-20" />
+                      <Skeleton className="h-2 w-16" />
+                      <Skeleton className="h-2 w-28" />
+                    </div>
+                    <div className="flex flex-col  gap-1 items-center">
+                      <Skeleton className="h-3 w-16"></Skeleton>
+                      <Skeleton className="h-2 w-12"></Skeleton>
+                    </div>
+                  </div> 
+                  <div className="shadow-md rounded-md flex flex-row p-4 h-20 gap-3 items-center w-full">
+                    <Skeleton className="w-16 h-16" />
+                    <div className="flex flex-col flex-1 gap-1">
+                      <Skeleton className="h-3 w-20" />
+                      <Skeleton className="h-2 w-16" />
+                      <Skeleton className="h-2 w-28" />
+                    </div>
+                    <div className="flex flex-col  gap-1 items-center">
+                      <Skeleton className="h-3 w-16"></Skeleton>
+                      <Skeleton className="h-2 w-12"></Skeleton>
+                    </div>
+                  </div> <div className="shadow-md rounded-md flex flex-row p-4 h-20 gap-3 items-center w-full">
+                    <Skeleton className="w-16 h-16" />
+                    <div className="flex flex-col flex-1 gap-1">
+                      <Skeleton className="h-3 w-20" />
+                      <Skeleton className="h-2 w-16" />
+                      <Skeleton className="h-2 w-28" />
+                    </div>
+                    <div className="flex flex-col  gap-1 items-center">
+                      <Skeleton className="h-3 w-16"></Skeleton>
+                      <Skeleton className="h-2 w-12"></Skeleton>
+                    </div>
+                  </div> 
+                </div>
+}
               </div>
               <DrawerFooter className="flex flex-row justify-center items-center">
                 <button         onClick={onGoBack}
