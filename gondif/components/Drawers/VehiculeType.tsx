@@ -7,7 +7,6 @@ import Large from '../../public/Large Vehicle.png';
 import { QuerySnapshot, collection, getDocs,query,onSnapshot } from "firebase/firestore"; 
 import {DB} from '@/app/firebase'
 import { Skeleton } from "@/components/ui/skeleton"
-import ContentLoader from "react-content-loader"
 
 
 
@@ -74,7 +73,7 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
               <DrawerHeader>
                 <DrawerTitle>Vehicle type</DrawerTitle>
               </DrawerHeader>
-              <div className="">
+              <div>
                 {vehiculeType?
                 <div className="flex items-center flex-col justify-between gap-3 w-full">
                   
@@ -97,8 +96,9 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
                 </div>
                 :    
                 <div className="flex items-center flex-col justify-between gap-3 w-full">
-                  <div className="shadow-md rounded-md flex flex-row p-4 h-20 gap-3 items-center w-full">
-                    <Skeleton className="w-16 h-16" />
+                  <Card className="w-full">
+                  <div className="shadow-md rounded-md flex flex-row p-4 gap-3 items-center w-full">
+                  <Skeleton className="w-[96px] h-[59px]" />
                     <div className="flex flex-col flex-1 gap-1">
                       <Skeleton className="h-3 w-20" />
                       <Skeleton className="h-2 w-16" />
@@ -109,19 +109,10 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
                       <Skeleton className="h-2 w-12"></Skeleton>
                     </div>
                   </div> 
-                  <div className="shadow-md rounded-md flex flex-row p-4 h-20 gap-3 items-center w-full">
-                    <Skeleton className="w-16 h-16" />
-                    <div className="flex flex-col flex-1 gap-1">
-                      <Skeleton className="h-3 w-20" />
-                      <Skeleton className="h-2 w-16" />
-                      <Skeleton className="h-2 w-28" />
-                    </div>
-                    <div className="flex flex-col  gap-1 items-center">
-                      <Skeleton className="h-3 w-16"></Skeleton>
-                      <Skeleton className="h-2 w-12"></Skeleton>
-                    </div>
-                  </div> <div className="shadow-md rounded-md flex flex-row p-4 h-20 gap-3 items-center w-full">
-                    <Skeleton className="w-16 h-16" />
+                  </Card>
+                  <Card className="w-full">
+                  <div className="shadow-md rounded-md flex flex-row p-4 gap-3 items-center w-full">
+                  <Skeleton className="w-[96px] h-[59px]" />
                     <div className="flex flex-col flex-1 gap-1">
                       <Skeleton className="h-3 w-20" />
                       <Skeleton className="h-2 w-16" />
@@ -132,6 +123,22 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
                       <Skeleton className="h-2 w-12"></Skeleton>
                     </div>
                   </div> 
+                  </Card>
+                  <Card className="w-full">
+                  <div className="shadow-md rounded-md flex flex-row p-4 gap-3 items-center w-full">
+                  <Skeleton className="w-[96px] h-[59px]" />
+                    <div className="flex flex-col flex-1 gap-1">
+                      <Skeleton className="h-3 w-20" />
+                      <Skeleton className="h-2 w-16" />
+                      <Skeleton className="h-2 w-28" />
+                    </div>
+                    <div className="flex flex-col  gap-1 items-center">
+                      <Skeleton className="h-3 w-16"></Skeleton>
+                      <Skeleton className="h-2 w-12"></Skeleton>
+                    </div>
+                  </div> 
+                  </Card>
+                  
                 </div>
 }
               </div>
