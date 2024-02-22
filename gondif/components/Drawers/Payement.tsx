@@ -21,11 +21,17 @@ import {
 } from "@/components/ui/drawer"
  import { useState } from "react";
  
-const Payement = () => {
-    const [isOpen, setIsOpen] = useState(true);  
+ interface PayementProps {
+  onClose: () => void;
+}
+
+const Payement: React.FC<PayementProps> = ({ onClose }) => {
+  const [isOpen, setIsOpen] = useState(true);  
+     
     
   return (
-    <div><Drawer  open={true} onClose={() => setIsOpen(false)}>
+    <div> <Drawer open={true} onClose={() => { setIsOpen(false); onClose(); }}>
+
     {!isOpen && <DrawerTrigger className="absolute h-screen w-screen opacity-0 top-0" onClick={() => setIsOpen(true)}></DrawerTrigger>}  
 
 <DrawerPortal>

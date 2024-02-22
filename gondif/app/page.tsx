@@ -20,63 +20,64 @@ import { VehiculeTypeWraper } from "@/context/VehiculeType"
 
 
 export default function Home() {
+  const [isAddPositionOpen, setIsAddPositionOpen] = useState(true);
+  const [isVehiculeTypeOpen, setIsVehiculeTypeOpen] = useState(false);
+  const [isExtraDetailsOpen, setIsExtraDetailsOpen] = useState(false);
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
 
-const [isAddPositionOpen, setIsAddPositionOpen] = useState(true);
-const [isVehiculeTypeOpen, setIsVehiculeTypeOpen] = useState(false);
-const [isExtraDetailsOpen, setIsExtraDetailsOpen] = useState(false);
+  const handleConfirmPosition = () => {
+    setIsAddPositionOpen(false);
+    setIsVehiculeTypeOpen(true);
+  };
 
-const handleConfirmPosition = () => {
-  setIsAddPositionOpen(false);
-  setIsVehiculeTypeOpen(true);
-};
+  const handleConfirmVehicle = () => {
+    setIsVehiculeTypeOpen(false);
+    setIsExtraDetailsOpen(true);
+  };
 
-const handleConfirmVehicle = () => {
-  setIsVehiculeTypeOpen(false);
-  setIsExtraDetailsOpen(true);
-};
+  const handleGoBackToAddPosition = () => {
+    setIsVehiculeTypeOpen(false);
+    setIsAddPositionOpen(true);
+  };
 
-const handleGoBackToAddPosition = () => {
-  setIsVehiculeTypeOpen(false);
-  setIsAddPositionOpen(true);
-};
+  const handleReturnToVehiculeType = () => {
+    setIsExtraDetailsOpen(false);
+    setIsVehiculeTypeOpen(true);
+  };
 
-const handleReturnToVehiculeType = () => {
-  setIsExtraDetailsOpen(false);
-  setIsVehiculeTypeOpen(true);
-};
+  const handleConfirmExtraDetails = () => {
+    setIsPaymentOpen(true);
+  };
 
+  const handleClosePayment = () => {
+    setIsPaymentOpen(false);
+  };
 
+  const { userLocation, setUserLocation } = useUserLocationContext();
 
-  const {userLocation,setUserLocation} =useUserLocationContext();
-
-  
   return (
       <>
       <VehiculeTypeWraper>
       <MapflytoWraper>
-    <UserLocationWraper>
-      <CoordinatesWraper>
-          <div className="relative h-screen overflow-hidden ">
-        <MapBoxMap />
-      { userLocation ?
-        <div>
-        {isAddPositionOpen && (
-        <AddPosition onClose={handleConfirmPosition} />
-      )}
-      {isVehiculeTypeOpen && (
-        <VehiculeType onGoBack={handleGoBackToAddPosition} onNext={handleConfirmVehicle} />
-      )}
-      {isExtraDetailsOpen && (
-        <ExtraDetails onReturn={handleReturnToVehiculeType} />
-      )}
-        <Payement />
-
-
-        </div>
- : null}
-        </div>
-        </CoordinatesWraper>
-      </UserLocationWraper>
+        <UserLocationWraper>
+          <CoordinatesWraper>
+            <div className="relative h-screen overflow-hidden ">
+              <MapBoxMap />
+              {userLocation ? (
+                <div>
+                  {isAddPositionOpen && <AddPosition onClose={handleConfirmPosition} />}
+                  {isVehiculeTypeOpen && (
+                    <VehiculeType onGoBack={handleGoBackToAddPosition} onNext={handleConfirmVehicle} />
+                  )}
+                  {isExtraDetailsOpen && (
+                    <ExtraDetails onReturn={handleReturnToVehiculeType} onConfirm={handleConfirmExtraDetails} />
+                  )}
+                  {isPaymentOpen && <Payement onClose={handleClosePayment} />}
+                </div>
+              ) : null}
+            </div>
+          </CoordinatesWraper>
+        </UserLocationWraper>
       </MapflytoWraper>
       </VehiculeTypeWraper>
         </>
