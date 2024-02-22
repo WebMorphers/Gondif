@@ -24,10 +24,11 @@ import {
 import { useState } from "react"
  
 interface ExtraDetailsProps {
-  onReturn: () => void; 
+  onReturn: () => void;
+  onConfirm: () => void;  
 }
 
-const ExtraDetails: React.FC<ExtraDetailsProps> = ({ onReturn }) => { 
+const ExtraDetails: React.FC<ExtraDetailsProps> = ({ onReturn, onConfirm }) => {
    const [isOpen, setIsOpen] = useState(true);  
   const [selected, setSelected] = useState<any>(null)
   const [cardClick, setCardClick] = useState<number | null>(null)
@@ -135,7 +136,7 @@ const ExtraDetails: React.FC<ExtraDetailsProps> = ({ onReturn }) => {
     <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" d="M11 6L5 12M5 12L11 18M5 12H19"></path>
   </svg>
 </button>
-                  <Button className="bg-[#9FE870] text-[#163300] w-full ">Confirm</Button>
+<Button onClick={onConfirm} className="bg-[#9FE870] text-[#163300] w-full">Confirm</Button> 
                 </DrawerFooter>
               </div>
             </DrawerContent>
