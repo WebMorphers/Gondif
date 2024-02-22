@@ -2,8 +2,8 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.example.app',
-  appName: 'Gondif',
-  webDir: 'out',
+  appName: 'gondif',
+  webDir: 'public',
   server: {
     androidScheme: 'https'
   }

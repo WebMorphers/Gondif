@@ -31,16 +31,7 @@ function AutoCompleteAdress() {
 
   
   useEffect(()=> {
-    if (source) {
-      const DelayedRequest = setTimeout(()=>{
-      getAdressList()
-    },1000)
-    return ()=> clearTimeout(DelayedRequest)  
-  }
-  },[source])
-  
-
-
+    
 
   const getAdressList = async () => {
     const res = await fetch(`/api/search-adress?q=`+source,{
@@ -52,6 +43,16 @@ function AutoCompleteAdress() {
 
 
   }
+
+    if (source) {
+      const DelayedRequest = setTimeout(()=>{
+      getAdressList()
+    },1000)
+    return ()=> clearTimeout(DelayedRequest)  
+  }
+  },[source])
+  
+
 
   
 
