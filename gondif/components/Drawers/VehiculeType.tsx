@@ -104,21 +104,22 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
               </DrawerHeader>
               <div className="">
                 <div className="flex items-center flex-col justify-between gap-3 w-full">
-                  {vehiculeType.map((vehicule:any,id:number)=>(
-                    <Card onClick={()=>handleCardClick(vehicule.id)} className={` ${isClicked === vehicule.id ? "scale-105 border-[#9FE870] border-2" : ""}`}>
-                      <div className="shadow-md rounded-md flex flex-row p-4  gap-3 items-center w-full">
-                        <img src={vehicule.image} width={80} />
-                        <div className="flex flex-col flex-1 gap-1">
-                          <h1 style={{ color: isClicked === vehicule.id ? '#9FE870' : '#163300' }} className="font-bold">{vehicule.name}</h1>
-                          <p className="text-[#8996A2] text-xs">{vehicule.short_description} <br />  {vehicule.description_plus}</p>
-                        </div>
-                        <div className="flex flex-col  gap-1 items-center">
-                          <h1 className="text-[#163300] text-[13px] font-bold">MAD {vehicule.min_price} - {vehicule.max_price}</h1>
-                          <p className="text-[#8996A2] text-[11px] ">{vehicule.average_time}</p>
-                        </div>
-                      </div> 
-                    </Card>
-                  ))}
+                {vehiculeType.map((vehicule:any,id:number)=>(
+  <Card key={vehicule.id} onClick={()=>handleCardClick(vehicule.id)} className={` ${isClicked === vehicule.id ? "scale-105 border-[#9FE870] border-2 w-full" : "w-full"}`}>
+    <div className="shadow-md rounded-md flex flex-row p-4  gap-3 items-center w-full">
+      <Image src={vehicule.image} width={80} height={80} alt="Vehicle Image" />
+      <div className="flex flex-col flex-1 gap-1">
+        <h1 style={{ color: isClicked === vehicule.id ? '#9FE870' : '#163300' }} className="font-bold">{vehicule.name}</h1>
+        <p className="text-[#8996A2] text-xs">{vehicule.short_description} <br />  {vehicule.description_plus}</p>
+      </div>
+      <div className="flex flex-col  gap-1 items-center">
+        <h1 className="text-[#163300] text-[13px] font-bold">MAD {vehicule.min_price} - {vehicule.max_price}</h1>
+        <p className="text-[#8996A2] text-[11px] ">{vehicule.average_time}</p>
+      </div>
+    </div> 
+  </Card>
+))}
+
                 </div>
               </div>
               <DrawerFooter className="flex flex-row justify-center items-center">
