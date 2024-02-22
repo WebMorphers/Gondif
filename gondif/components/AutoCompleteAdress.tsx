@@ -67,9 +67,7 @@ function AutoCompleteAdress() {
         lat: data.features[0].geometry.coordinates[1],
       })
     
-       console.log(Coordinates)
-
-    
+       console.log(Coordinates) 
   }
 
   return (
