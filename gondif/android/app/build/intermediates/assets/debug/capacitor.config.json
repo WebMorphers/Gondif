@@ -1,0 +1,8 @@
+{
+	"appId": "com.example.app",
+	"appName": "gondif",
+	"webDir": "public",
+	"server": {
+		"androidScheme": "https"
+	}
+}
