@@ -16,7 +16,7 @@ import { VehiculeTypeWraper } from "@/context/VehiculeType"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import {app} from "./firebase"
 import { useRouter } from "next/navigation"
-import { PhonenumberWraper } from "@/context/NumberContext"
+import { NumberWraper } from "@/context/NumberContext"
 
 
 export default function Home() {
@@ -69,7 +69,7 @@ export default function Home() {
 
   return (
       <>
-          <PhonenumberWraper>
+          <NumberWraper>
 
       <VehiculeTypeWraper>
       <MapflytoWraper>
@@ -94,7 +94,7 @@ export default function Home() {
         </UserLocationWraper>
       </MapflytoWraper>
       </VehiculeTypeWraper>
-      </PhonenumberWraper>
+      </NumberWraper>
 
         </>
   )
