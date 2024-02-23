@@ -170,7 +170,7 @@ Continue with Apple</span>
    WhatsApp or SMS messages, including by automated means,
    from Gondif and its affiliates to the number provideds</p>
       </div>
-      <button ref={signInButtonRef} /> {/* empty button element for RecaptchaVerifier */}
+      <button ref={signInButtonRef} /> 
     </div>
   );
 };
