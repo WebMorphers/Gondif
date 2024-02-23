@@ -6,15 +6,17 @@ import dynamic from 'next/dynamic';
 import { signIn } from 'next-auth/react';
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import {DB, app,  firebaseConfig } from '@/app/firebase';
+import { PhonenumberWraper, useNumberContext } from "@/context/NumberContext"
+
 import { useRouter } from 'next/navigation';
 const PhoneInput = dynamic(() => import('react-phone-number-input'), { ssr: false });
 
 const Login = () => {
   const [value, setValue] = useState<string | undefined>(undefined);
-  const [phoneNumber,setPhoneNumber] =useState<any>('');
-  const [otp,setOtp] =useState<any>('');
-  const [confirmationResult,setconfirmationResult] =useState<any>(null);
-  const [otpSent,setOtpSent] =useState<any>(false);
+  const {phoneNumber,setPhoneNumber}= useNumberContext();
+  const {otp,setOtp} =useNumberContext();
+  const {confirmationResult,setconfirmationResult} =useNumberContext();
+  const {otpSent,setOtpSent} =useNumberContext();
 
   const auth = getAuth(app);
   const router = useRouter();
@@ -69,6 +71,7 @@ const Login = () => {
     }
   }
   return (
+    <PhonenumberWraper>
     <div className='flex flex-col p-9 gap-5'>
       <h1 className=''>Enter your mobile number</h1>
       <div className='flex flex-col gap-5'>
@@ -172,6 +175,7 @@ Continue with Apple</span>
       </div>
       <button ref={signInButtonRef} /> 
     </div>
+    </PhonenumberWraper>
   );
 };
 

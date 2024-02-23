@@ -1,9 +1,5 @@
 "use client"
-
-
 import * as React from "react"
-
-
 import { useEffect, useState } from "react"
 import MapBoxMap from "./Map/MapBoxMap"
 import { useSession } from "next-auth/react"
@@ -20,6 +16,7 @@ import { VehiculeTypeWraper } from "@/context/VehiculeType"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import {app} from "./firebase"
 import { useRouter } from "next/navigation"
+import { PhonenumberWraper } from "@/context/NumberContext"
 
 
 export default function Home() {
@@ -72,6 +69,8 @@ export default function Home() {
 
   return (
       <>
+          <PhonenumberWraper>
+
       <VehiculeTypeWraper>
       <MapflytoWraper>
         <UserLocationWraper>
@@ -95,6 +94,8 @@ export default function Home() {
         </UserLocationWraper>
       </MapflytoWraper>
       </VehiculeTypeWraper>
+      </PhonenumberWraper>
+
         </>
   )
 }
