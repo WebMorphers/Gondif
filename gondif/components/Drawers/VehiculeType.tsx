@@ -87,7 +87,7 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
   key={vehicule.id} 
   onClick={()=>{
     handleCardClick(vehicule.id);
-    setSelectedVehiculeType(vehicule);
+    setSelectedVehiculeType(selectedVehiculeType === vehicule ? null : vehicule);
     }}
   className={` ${isClicked === vehicule.id ? "scale-105 border-[#9FE870] border-2 w-full" : "w-full"}`}>
     <div className="shadow-md rounded-md flex flex-row p-4  gap-3 items-center w-full">
@@ -154,13 +154,13 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
 }
               </div>
               <DrawerFooter className="flex flex-row justify-center items-center">
-                <button         onClick={onGoBack}
+                <button   onClick={onGoBack}
  className="cursor-pointer duration-200 hover:scale-110 active:scale-100" title="Go Back">
   <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 24 24" className="stroke-[#163300]">
     <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" d="M11 6L5 12M5 12L11 18M5 12H19"></path>
   </svg>
 </button>
-<Button className="bg-[#9FE870] text-[#163300] w-full" onClick={onNext}>Confirm Vehicle</Button>
+<Button disabled={!selectedVehiculeType? true : false} className="bg-[#9FE870] text-[#163300] w-full" onClick={onNext}>Confirm Vehicle</Button>
 
               </DrawerFooter>
             </div>
