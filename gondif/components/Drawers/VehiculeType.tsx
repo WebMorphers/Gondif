@@ -165,7 +165,7 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
               </DrawerFooter>
             </div>
           </DrawerContent>
-        </DrawerPortal>
+        </DrawerPortal> 
       </Drawer>
     </div>
         </VehiculeTypeWraper>
