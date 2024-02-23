@@ -17,6 +17,9 @@ import ExtraDetails from "@/components/Drawers/ExtraDetails"
 import Payement from "@/components/Drawers/Payement"
 import { MapflytoWraper } from "@/context/Mapflytocontext"
 import { VehiculeTypeWraper } from "@/context/VehiculeType"
+import { getAuth, onAuthStateChanged } from "firebase/auth"
+import {app} from "./firebase"
+import { useRouter } from "next/navigation"
 
 
 export default function Home() {
@@ -24,6 +27,18 @@ export default function Home() {
   const [isVehiculeTypeOpen, setIsVehiculeTypeOpen] = useState(false);
   const [isExtraDetailsOpen, setIsExtraDetailsOpen] = useState(false);
   const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+
+  const auth = getAuth(app);
+  const router = useRouter();
+
+  useEffect(() =>{
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        router.push('/login')
+      }
+    });
+  },[auth,router]);
+
 
   const handleConfirmPosition = () => {
     setIsAddPositionOpen(false);

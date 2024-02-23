@@ -1,0 +1,16 @@
+[debug] [2024-02-23T01:35:29.842Z] ----------------------------------------------------------------------
+[debug] [2024-02-23T01:35:29.845Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\othso\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start --project demo-test
+[debug] [2024-02-23T01:35:29.846Z] CLI Version:   13.3.1
+[debug] [2024-02-23T01:35:29.846Z] Platform:      win32
+[debug] [2024-02-23T01:35:29.846Z] Node Version:  v20.11.0
+[debug] [2024-02-23T01:35:29.846Z] Time:          Fri Feb 23 2024 02:35:29 GMT+0100 (GMT+01:00)
+[debug] [2024-02-23T01:35:29.846Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-02-23T01:35:29.912Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-02-23T01:35:29.912Z] > authorizing via signed-in user (webmorphers@gmail.com)
+[debug] [2024-02-23T01:35:34.916Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\othso\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:258:49)
+    at listOnTimeout (node:internal/timers:573:17)
+    at process.processTimers (node:internal/timers:514:7)
+[error] 
+[error] Error: An unexpected error has occurred.

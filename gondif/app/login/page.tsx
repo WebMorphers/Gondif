@@ -1,37 +1,102 @@
-'use client'
+"use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import 'react-phone-number-input/style.css';
 import dynamic from 'next/dynamic';
 import { signIn } from 'next-auth/react';
-
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import {DB, app,  firebaseConfig } from '@/app/firebase';
+import { useRouter } from 'next/navigation';
 const PhoneInput = dynamic(() => import('react-phone-number-input'), { ssr: false });
 
-const Page = () => {
-  const [value, setValue] = useState<string | undefined>(undefined); 
+const Login = () => {
+  const [value, setValue] = useState<string | undefined>(undefined);
+  const [phoneNumber,setPhoneNumber] =useState<any>('');
+  const [otp,setOtp] =useState<any>('');
+  const [confirmationResult,setconfirmationResult] =useState<any>(null);
+  const [otpSent,setOtpSent] =useState<any>(false);
 
-  
+  const auth = getAuth(app);
+  const router = useRouter();
+  const signInButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!signInButtonRef.current) {
+      return;
+    }
+
+    (window as any).recaptchaVerifier = new RecaptchaVerifier(auth, signInButtonRef.current, {
+      'size': 'invisible',
+      'callback': (response: any) => {
+        // reCAPTCHA solved, allow signInWithPhoneNumber.
+      },
+      'expired-callback' : ()=>{
+
+      }
+    });
+  },[auth, signInButtonRef]);
+
+
+
+  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhoneNumber(e.target.value);
+  }
+
+  const handleOtpChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhoneNumber(e.target.value);
+  }
+
+  const handleSendOtp = async () => {
+    try{
+      const formattedPhoneNumber = '+' + phoneNumber.replace(/\D/g, '');
+      const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, (window as any).recaptchaVerifier);
+      setconfirmationResult(confirmation)
+      setOtpSent(true)
+      setPhoneNumber('')
+      alert('OTP has been sent successfully')
+    }
+    catch(error){
+      console.error(error)
+    }
+  }
+  const handleOTPSubmit = async () => {
+    try{
+      await confirmationResult.confirm(otp);
+      setOtp('');
+      router.push('/')
+    } catch(error){
+      console.error(error)
+    }
+  }
   return (
     <div className='flex flex-col p-9 gap-5'>
-      <h1 className='' >Enter your mobile number</h1>
-      <div className='flex flex-col gap-5'> 
-        <PhoneInput 
-        international
-        countryCallingCodeEditable={false}
+      <h1 className=''>Enter your mobile number</h1>
+      <div className='flex flex-col gap-5'>
+        <PhoneInput
+          international
+          countryCallingCodeEditable={false}
           defaultCountry="MA"
-          value={value}
-          onChange={(newValue: string | undefined) => setValue(newValue)}  
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e)} 
         />
-        <div><button
-  className="max-sm:w-full relative cursor-pointer opacity-90 hover:opacity-100 transition-opacity p-[2px] bg-black rounded-[16px] bg-gradient-to-t from-[#9FE870] to-[#9FE870] active:scale-95"
->
-  <span
-    className="text-center justify-center text-xl font-bold w-full h-full flex items-center gap-2 px-8 py-3 bg-[#9FE870] text-[#163300] rounded-[14px] bg-gradient-to-t from-[#9FE870] to-[#9FE870]"
-  >
-    Next</span>
-</button>
-</div>
-<a onClick={() => signIn('facebook')}>
+        <input
+          type="text"
+          value={otp}
+          onChange={(e) => setOtp(e.target.value)}
+          placeholder='enter OTP Number'
+        />
+        <div>
+          <button
+            onClick={otpSent ? handleOTPSubmit : handleSendOtp}
+            className={`bg-${otpSent ? 'green' : 'blue'}-500 text-white p-3 rounded-md w-full`}
+            style={{backgroundColor: otpSent ? 'green' : 'blue'}}
+          >
+            <span className="text-center justify-center text-xl font-bold w-full h-full flex items-center gap-2 px-8 py-3 bg-[#9FE870] text-[#163300] rounded-[14px] bg-gradient-to-t from-[#9FE870] to-[#9FE870]">
+              Next
+            </span>
+          </button>
+        </div>
+        <a onClick={() => signIn('facebook')}>
 
 <div><button
   className="max-sm:w-full relative cursor-pointer opacity-90 hover:opacity-100 transition-opacity p-[2px] bg-black rounded-[16px] bg-gradient-to-t from-[#163300] to-[#163300] active:scale-95"
@@ -104,10 +169,10 @@ Continue with Apple</span>
 <p className='text-xs text-[#757575]'> By proceeding, you consent to get calls,
    WhatsApp or SMS messages, including by automated means,
    from Gondif and its affiliates to the number provideds</p>
-
       </div>
+      <button ref={signInButtonRef} /> {/* empty button element for RecaptchaVerifier */}
     </div>
   );
 };
 
-export default Page;
+export default Login;
