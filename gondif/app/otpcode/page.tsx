@@ -12,7 +12,7 @@ const OtpCode = () => {
     const maskPhoneNumber = (phoneNumber: string) => {
         const maskedPart = phoneNumber?.slice(0, -4).replace(/\d/g, '*');
         const lastFourDigits = phoneNumber?.slice(-4);
-        return maskedPart + lastFourDigits;
+        return maskedPart + lastFourDigits; 
     };
 
     return (
