@@ -160,7 +160,7 @@ const VehiculeType: React.FC<VehiculeTypeProps> = ({ onGoBack, onNext }) => {
     <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" d="M11 6L5 12M5 12L11 18M5 12H19"></path>
   </svg>
 </button>
-<Button disabled={!selectedVehiculeType? true : false} className="bg-[#9FE870] text-[#163300] w-full" onClick={onNext}>Confirm Vehicle</Button>
+<Button disabled={selectedVehiculeType? false : true} className="bg-[#9FE870] text-[#163300] w-full" onClick={onNext}>Confirm Vehicle</Button>
 
               </DrawerFooter>
             </div>

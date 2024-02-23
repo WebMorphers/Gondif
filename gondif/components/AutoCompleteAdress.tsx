@@ -5,6 +5,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { UserLocationWraper, useUserLocationContext } from '@/context/UserLocationContext';
 import { MapflytoWraper, useMapFlyToContext } from '@/context/Mapflytocontext';
+import { Skeleton } from './ui/skeleton';
 
 const MAPBOX_RETRIEVE_URL="https://api.mapbox.com/search/searchbox/v1/retrieve/"
 const MAPBOX_SESSION_TOKEN='b6844ea0-751a-478e-ac07-b155204cb99e'
@@ -25,7 +26,7 @@ function AutoCompleteAdress() {
 
   const {currentLocation,setCurrentLocation} = useMapFlyToContext();
 
-
+  const [isSearched,setIsSearched] = useState<any>(false);
 
   useEffect(()=> {
     console.log(userAddress);
@@ -78,7 +79,7 @@ function AutoCompleteAdress() {
     <MapflytoWraper>
     <div>
         {userAddress? 
-        <p className='cursor-pointer text-sm leading-5 max-w-60' onClick={()=>{setUserAddress(null); setSourceChange(false);}}>        
+        <p className='cursor-pointer text-sm leading-5 max-w-60' onClick={()=>{setUserAddress(null); setSourceChange(false); }}>        
           {userAddress?.features[0]?.properties?.road?
            userAddress?.features[0]?.properties?.plus_code +" | " + userAddress?.features[0]?.properties?.road
            :
@@ -88,9 +89,11 @@ function AutoCompleteAdress() {
         <input type='text' name='address'
          className='bg-white p-1 border w-full rounded-md outline-none '
          value={source}
-         onChange={(e)=>{setSource(e.target.value);setSourceChange(true)}} /> 
-  }
-        {AdressList?.data?.suggestions&&sourceChange?
+         onChange={(e)=>{setSource(e.target.value);setSourceChange(true); setIsSearched(true)}} /> 
+  } 
+{isSearched&&!Coordinates?
+<>
+        {AdressList?.data?.suggestions&&sourceChange&&source?
         <div className=' h-full text-black z-10 shadow-lg w-full rounded-xl'>
         {AdressList?.data?.suggestions.map((item:any,index:number)=>(
           <div           
@@ -106,7 +109,25 @@ function AutoCompleteAdress() {
             </div>
         
           ))}
-        </div>:null}
+        </div>:
+        <div className=' h-full text-black z-10 shadow-lg w-full rounded-xl'>
+          <div className='p-1 px-2 border'>
+            <Skeleton className='h-5 w-16 mb-2' />
+            <Skeleton className='h-2 w-full mb-1' />
+            <Skeleton className='h-2 w-12' />
+          </div>
+          <div className='p-1 px-2 border'>
+            <Skeleton className='h-5 w-16 mb-2' />
+            <Skeleton className='h-2 w-full mb-1' />
+            <Skeleton className='h-2 w-12' />
+          </div>
+          <div className='p-1 px-2 border'>
+            <Skeleton className='h-5 w-16 mb-2' />
+            <Skeleton className='h-2 w-full mb-1' />
+            <Skeleton className='h-2 w-12' />
+          </div>
+        </div>
+      }</>:null}
     </div>
     </MapflytoWraper>
     </UserLocationWraper>
