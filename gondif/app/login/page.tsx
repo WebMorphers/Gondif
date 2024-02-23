@@ -169,6 +169,7 @@ Continue with Apple</span>
 <p className='text-xs text-[#757575]'> By proceeding, you consent to get calls,
    WhatsApp or SMS messages, including by automated means,
    from Gondif and its affiliates to the number provideds</p>
+git
       </div>
       <button ref={signInButtonRef} /> {/* empty button element for RecaptchaVerifier */}
     </div>
